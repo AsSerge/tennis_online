@@ -123,7 +123,7 @@ $jurors[] = array(
 			echo "<div class='dt-sc-one-fourth column first animate' data-animation='fadeInLeft' data-delay='100'>";
 			echo "	<div class='dt-sc-team type2'>";
 			echo "		<div class='team-thumb'>";
-			echo "			<img src='images/players/{$j['image']}' alt='' title=''>";
+			echo "			<img src='images/players/{$j['image']}' alt='{$j['name']} {$j['surname']}' title='{$j['name']} {$j['surname']}'>";
 			echo "			<h3><span>{$j['name']}</span> <br><span>{$j['surname']}</span></h3>";
 			echo "			<div class='team-detail'>";
 			echo "				<h4>Спортсмен</h4>";

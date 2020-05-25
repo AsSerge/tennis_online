@@ -5,7 +5,7 @@ include ('./login/line_check.php');
 <!-- Loader starts here -->
 <div id="loader-wrapper">
 	<div class="loader">
-		<span class="glyph-icon flaticon-man159"></span>
+		<!-- <span class="glyph-icon flaticon-man159"></span> -->
 	</div>
 </div>
 <!-- Loader ends here -->

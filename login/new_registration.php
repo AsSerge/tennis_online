@@ -15,8 +15,9 @@ function CheckMail ($db, $user_mail){
 		return true;
 	}
 }
-
 $set = $_POST['my_whwre'];
+$sender_mail = "Tsvetkov-SA@grmp.ru";
+$sender_name = "Сергей Цветков";
 
 if($set =="SUPER8"){
 	$user_mail = htmlspecialchars($_POST['user_mail'], ENT_QUOTES);
@@ -44,14 +45,14 @@ if($set =="SUPER8"){
 		$message = "Добрый день! Вы оставили заявку на регистрацию на сайте tennis.online.<br>Для активации вашей учетной записи вам необходимо пройти по ссылке:<br>";
 		$message .= "<a href='{$_SERVER['REMOTE_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}'>";
 		$message .= "{$_SERVER['REMOTE_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}";
-		$message .= "</a>";
+		$message .= "</a><br>";
+		$message .= "==============================================<br>";
+		$message .= "С уважением. Администрация сайта tennis.online";
 
-		//SendMailGRMP($mail, $subject, $message, $sender_mail, $sender_name); // Отправляем почту
-
-		echo $message;
+		SendMailGRMP($user_mail, $subject, $message, $sender_mail, $sender_name); // Отправляем почту
 
 		// Возвращаемся на страницу
-		// header("Location: /entry.php"); exit();
+		header("Location: /entry.php"); exit();
 	}
 }
 
