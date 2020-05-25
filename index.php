@@ -2,7 +2,7 @@
 <!-- Loader starts here -->
 <div id="loader-wrapper">
 	<div class="loader">
-		<span class="glyph-icon flaticon-man159"></span>
+		<!-- <span class="glyph-icon flaticon-man159"></span> -->		
 	</div>
 </div>
 <!-- Loader ends here -->
@@ -20,8 +20,6 @@
 				<!-- icon content starts here -->
 				<?php include ('./layout/mp/mp_icon_content.php');?>
 				<!-- icon content ends here -->
-
-<!-- GitHub Test -->
 
 				<!-- main-content starts here -->
 				<div id="main-content">

@@ -1,185 +1,150 @@
+<?php
+// База членов жюри конкурсов
+$jurors[] = array(
+	"image"=>"medvedev3.png",
+	"name"=>"Даниил",
+	"surname"=>"Медведев",
+	"age"=>"24",
+	"titles"=>"7",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"139/80",
+	"experience"=>"18+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"#",
+	"twitter"=>"#"
+);
+$jurors[] = array(
+	"image"=>"rublev3.png",
+	"name"=>"Андрей",
+	"surname"=>"Рублев",
+	"age"=>"22",
+	"titles"=>"4",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"106/82",
+	"experience"=>"19+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"#",
+	"twitter"=>"#"
+);
+$jurors[] = array(
+	"image"=>"khachanov2.png",
+	"name"=>"Карен",
+	"surname"=>"Хачанов",
+	"age"=>"23",
+	"titles"=>"4",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"128/103",
+	"experience"=>"20+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"#",
+	"twitter"=>"#"
+);
+$jurors[] = array(
+	"image"=>"donskoy.png",
+	"name"=>"Евгений",
+	"surname"=>"Донской",
+	"age"=>"30",
+	"titles"=>"-",
+	"cup_name"=>"ATP Ranking",
+	"cup_value"=>"115",
+	"experience"=>"23+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"https://www.instagram.com/edonskoy/",
+	"twitter"=>"#"
+);
+$jurors[] = array(
+	"image"=>"kuznetsova.png",
+	"name"=>"Светлана",
+	"surname"=>"Кузнецова",
+	"age"=>"34",
+	"titles"=>"34",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"922/471",
+	"experience"=>"27+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"#",
+	"twitter"=>"#"
+);
+$jurors[] = array(
+	"image"=>"vesnina.png",
+	"name"=>"Елена",
+	"surname"=>"Веснина",
+	"age"=>"33",
+	"titles"=>"21",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"836/555",
+	"experience"=>"26+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"#",
+	"twitter"=>"#"
+);
+$jurors[] = array(
+	"image"=>"pavlyuchenkova.png",
+	"name"=>"Анастасия",
+	"surname"=>"Павлюченкова",
+	"age"=>"28",
+	"titles"=>"17",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"635/441",
+	"experience"=>"22+ лет",
+	"facebook"=>"https://www.facebook.com/AnastasiaPavlyuchenkova/",
+	"google"=>"#",
+	"instagram"=>"https://www.instagram.com/nastia_pav/",
+	"twitter"=>"https://twitter.com/NastiaPav"
+);
+$jurors[] = array(
+	"image"=>"makarova.png",
+	"name"=>"Екатерина",
+	"surname"=>"Макарова",
+	"age"=>"31",
+	"titles"=>"17",
+	"cup_name"=>"Win/Loss",
+	"cup_value"=>"812/487",
+	"experience"=>"25+ лет",
+	"facebook"=>"#",
+	"google"=>"#",
+	"instagram"=>"#",
+	"twitter"=>"#"
+);
+
+?>
 <div class="fullwidth-section">
-							<div class="container">
-								<h2 class="border-title aligncenter"> <span> Члены Жюри Конкурсов </span></h2>
-																<div class="dt-sc-one-fourth column first animate" data-animation="fadeInLeft" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/medvedev3.png" alt="" title="">
-											<h3><span>Даниил</span> <br><span>Медведев</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 24 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 7 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 139/80 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 18+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-google-plus" href="#"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
+	<div class="container">
+		<h2 class="border-title aligncenter"> <span> Члены Жюри Конкурсов </span></h2>
 
-																<div class="dt-sc-one-fourth column animate" data-animation="fadeInLeft" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/rublev3.png" alt="" title="">
-											<h3><span>Андрей</span> <br><span>Рублев</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 22 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 4 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 106/82 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 19+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-google-plus" href="#"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
-
-																<div class="dt-sc-one-fourth column animate" data-animation="fadeInDown" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/khachanov2.png" alt="" title="">
-											<h3><span>Карен</span> <br><span>Хачанов</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 23 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 4 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 128/103 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 20+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-google-plus" href="#"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
-																<div class="dt-sc-one-fourth column animate" data-animation="fadeInDown" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/donskoy.png" alt="" title="">
-											<h3><span>Евгений</span> <br><span>Донской</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 30 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> - </li>
-																									<li><span class="fa fa-trophy"></span> <b>ATP Ranking:</b> 115 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 23+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-instagram" href="https://www.instagram.com/edonskoy/"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
-
-																<div class="dt-sc-one-fourth column first animate" data-animation="fadeInUp" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/kuznetsova.png" alt="" title="">
-											<h3><span>Светлана </span><br><span>Кузнецова</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 34 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 34 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 922/471 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 27+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-google-plus" href="#"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
-																<div class="dt-sc-one-fourth column animate" data-animation="fadeInUp" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/vesnina.png" alt="" title="">
-											<h3><span>Елена </span><br><span>Веснина</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 33 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 21 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 836/555 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 26+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-google-plus" href="#"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
-																<div class="dt-sc-one-fourth column animate" data-animation="fadeInUp" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/pavlyuchenkova.png" alt="" title="">
-											<h3><span>Анастасия </span><br><span>Павлюченкова</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 28 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 17 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 635/441 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 22+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="https://www.facebook.com/AnastasiaPavlyuchenkova/"></a></li>
-											<li class="google"><a class="fa fa-instagram" href="https://www.instagram.com/nastia_pav/"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="https://twitter.com/NastiaPav"></a></li>
-										</ul>
-									</div>
-								</div>
-																<div class="dt-sc-one-fourth column animate" data-animation="fadeInUp" data-delay="100">
-									<div class="dt-sc-team type2">
-										<div class="team-thumb">
-											<img src="images/players/makarova.png" alt="" title="">
-											<h3><span>Екатерина </span><br><span>Макарова</span></h3>
-											<div class="team-detail">
-												<h4>Спортсмен</h4>
-												<ul>
-																									<li><span class="fa fa-calendar"></span> <b>Возраст:</b> 31 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Титулов:</b> 17 </li>
-																									<li><span class="fa fa-trophy"></span> <b>Win/Loss:</b> 812/487 </li>
-												  <li><span class="fa fa-certificate"></span> <b>Опыт:</b> 25+ лет </li>
-												</ul>
-											</div>
-										</div>
-										<ul class="dt-sc-social-icons">
-											<li class="facebook"><a class="fa fa-facebook" href="#"></a></li>
-											<li class="google"><a class="fa fa-instagram" href="#"></a></li>
-											<li class="twitter"><a class="fa fa-twitter" href="#"></a></li>
-										</ul>
-									</div>
-								</div>
-																<a class="dt-sc-button small" href="#" data-hover="Весь список"> Просмотреть </a>
-							</div>
-						</div>
+		<?php
+		foreach ($jurors as $j) {
+			echo "<div class='dt-sc-one-fourth column first animate' data-animation='fadeInLeft' data-delay='100'>";
+			echo "	<div class='dt-sc-team type2'>";
+			echo "		<div class='team-thumb'>";
+			echo "			<img src='images/players/{$j['image']}' alt='' title=''>";
+			echo "			<h3><span>{$j['name']}</span> <br><span>{$j['surname']}</span></h3>";
+			echo "			<div class='team-detail'>";
+			echo "				<h4>Спортсмен</h4>";
+			echo "				<ul>";
+			echo "					<li><span class='fa fa-calendar'></span> <b>Возраст:</b> {$j['age']} </li>";
+			echo "					<li><span class='fa fa-trophy'></span> <b>Титулов:</b> {$j['titles']} </li>";
+			echo "					<li><span class='fa fa-trophy'></span> <b>{$j['cup_name']}:</b> {$j['cup_value']} </li>";
+			echo "				  <li><span class='fa fa-certificate'></span> <b>Опыт:</b> {$j['experience']} </li>";
+			echo "				</ul>";
+			echo "			</div>";
+			echo "		</div>";
+			echo "		<ul class='dt-sc-social-icons'>";
+					if ($j['facebook'] != '#') echo "<li class='facebook'><a class='fa fa-facebook' href='{$j['facebook']}'></a></li>";
+					if ($j['google'] != '#')echo "<li class='google'><a class='fa fa-google-plus' href='{$j['google']}'></a></li>";
+					if ($j['instagram'] != '#')echo "<li class='instagram'><a class='fa fa-instagram' href='{$j['instagram']}'></a></li>";
+					if ($j['twitter'] != '#')echo "<li class='twitter'><a class='fa fa-twitter' href='{$j['twitter']}'></a></li>";
+			echo "		</ul>";
+			echo "	</div>";
+			echo "</div>";
+		}
+		?>
+		<a class="dt-sc-button small" href="#" data-hover="Весь список"> Просмотреть </a>
+	</div>
+</div>

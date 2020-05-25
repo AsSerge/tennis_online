@@ -44,7 +44,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/jquery-migrate.min.js"></script>
 
 	<!-- **Modernizr** -->
 	<script src="js/modernizr.custom.js"></script>
@@ -54,4 +54,4 @@
 	};
 	</script>
 	</head>
-	<body>			
+	<body>

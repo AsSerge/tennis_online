@@ -25,5 +25,6 @@
 <script type="text/javascript" src="js/custom.js"></script>
 
 <script type="text/javascript" src="js/custom/register.js"></script>
+
 </body>
 </html>
