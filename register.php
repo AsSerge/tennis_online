@@ -34,7 +34,7 @@
 											<i class="fa fa-user"></i> Еще не зарегистрированы? - Давайте сделаем это
 											сейчас! </span></h3>
 								</div>
-						</div>						
+						</div>
 						<div class="fullwidth-section dt-sc-paralax full-pattern6">
 							<div class="container">
 								<div class="form-wrapper register">

@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
 	$('#user_mail').on("focusout", function () {
 		var check_mail = $('#user_mail').val();
 		$.get(
-			"/login/check_mail.php", {
+			"./login/check_mail.php", {
 				mail: check_mail
 			}
 		).done(function (data) {
