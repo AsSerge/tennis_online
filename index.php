@@ -73,7 +73,6 @@
 			<!-- footer starts here -->
 			<?php include ('./layout/footer.php');?>
 			<!-- footer ends here -->
-
 	</div><!-- **Inner Wrapper - End** -->
 </div><!-- **Wrapper - End** -->
 <?php include('./layout/site_foot.php');?>
