@@ -22,11 +22,6 @@
 				<!-- icon content ends here -->
 
 <!-- GitHub Test -->
-<!-- GitHub Test -->
-<!-- GitHub Test -->
-<!-- GitHub Test -->
-<!-- GitHub Test -->
-
 
 				<!-- main-content starts here -->
 				<div id="main-content">
