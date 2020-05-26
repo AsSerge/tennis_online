@@ -6,6 +6,8 @@
 	</div>
 </div>
 <!-- Loader ends here -->
+
+
 	<!-- **Wrapper** -->
 	<div class="wrapper">
 		<div class="inner-wrapper">
