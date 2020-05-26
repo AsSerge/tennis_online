@@ -119,8 +119,9 @@ $jurors[] = array(
 		<h2 class="border-title aligncenter"> <span> Члены Жюри Конкурсов </span></h2>
 
 		<?php
+		$idelay = 100; // Настройка появления членов жюри
 		foreach ($jurors as $j) {
-			echo "<div class='dt-sc-one-fourth column first animate' data-animation='fadeInLeft' data-delay='100'>";
+			echo "<div class='dt-sc-one-fourth column first animate' data-animation='fadeInLeft' data-delay='{$idelay}'>";
 			echo "	<div class='dt-sc-team type2'>";
 			echo "		<div class='team-thumb'>";
 			echo "			<img src='images/players/{$j['image']}' alt='{$j['name']} {$j['surname']}' title='{$j['name']} {$j['surname']}'>";
@@ -143,6 +144,7 @@ $jurors[] = array(
 			echo "		</ul>";
 			echo "	</div>";
 			echo "</div>";
+			$idelay = $idelay + 200; 
 		}
 		?>
 		<a class="dt-sc-button small" href="#" data-hover="Весь список"> Просмотреть </a>

@@ -15,6 +15,7 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+	<!-- <base href="https://tennis.online/"> -->
 	<!-- **Favicon** -->
 	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<!-- **CSS - stylesheets** -->

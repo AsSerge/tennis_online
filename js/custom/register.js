@@ -1,4 +1,7 @@
-jQuery(document).ready(function ($) {
+jQuery(window).load(function ($) {
+	"use strict";
+	var $ = jQuery;
+
 	$('#register_form_submit').attr("disabled", true); // Запрещаем кнопку Зарегестрироваться
 
 	$('#user_mail').on("focusout", function () {

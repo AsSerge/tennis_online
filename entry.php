@@ -40,7 +40,7 @@ if(isset($_POST['submit']))
 		setcookie("hash", $hash, time()+60*60*24*3, "/");
 		$error_message = "Есть такой пользователь";
 		// Переадресовываем браузер на страницу проверки нашего скрипта
-		 header("Location: /private.php"); exit();
+		 header("Location: ../private.php"); exit();
 	}
 	else
 	{
@@ -94,8 +94,7 @@ if(isset($_POST['submit']))
 											<!-- <button class="dt-sc-button small" name="submit" type="submit">Отправить</button> -->
 											<input class="dt-sc-button small" value="Войти" type="submit" name="submit">
 											<div class="dt-sc-hr-invisible-small"></div>
-											<p><a href = "register.php">Зарегистрироваться в системе</a></p>
-		
+											<p><a href = "register.php">Зарегистрироваться в системе</a></p>		
 									</form>
 								</div>
 							</div>

@@ -21,6 +21,6 @@ if (
 	or ($userdata['user_id'] !== $_COOKIE['id'])
 	or ($userdata['user_status'] !== "true")	
    ){
-	header("Location: /entry.php"); exit();
+	header("Location: ../entry.php"); exit();
 }
 ?>

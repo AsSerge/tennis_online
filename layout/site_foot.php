@@ -19,7 +19,7 @@
 <script type="text/javascript"> lsjQuery(document).ready(function() { if(typeof lsjQuery.fn.layerSlider == "undefined") { lsShowNotice('layerslider_5','jquery'); } else { lsjQuery("#layerslider_5").layerSlider({responsiveUnder: 1240, layersContainer: 1170, skinsPath: 'js/layerslider/skins/'}) } }); </script>
 
 <script type="text/javascript" src="js/retina.js"></script>
-<script type="text/javascript" src="js/twitter/jquery.tweet.min.js"></script>
+<!-- <script type="text/javascript" src="js/twitter/jquery.tweet.min.js"></script> -->
 
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>

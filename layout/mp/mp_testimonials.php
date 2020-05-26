@@ -12,7 +12,7 @@
 			  <li class="dt-sc-testimonial">
 				<div class="author">
 				  <img src="http://www.placehold.it/120&text=Author" alt="" title="">
-														</div>
+				</div>
 				<blockquote><q>Здесь размещаем какой-то текст с приветствием и пожеланиями еще кого-то....  </q></blockquote>
 				<h4>ФИО<span>Должность от БАБОЛАТа</span></h4>
 			  </li>

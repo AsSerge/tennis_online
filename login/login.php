@@ -62,6 +62,6 @@ if(isset($_POST['submit']))
 
 		<?=$error_message?>
 
-<p><a href = "../mov.php">Рагистрация нового пользователя</a></p>
+<p><a href = "../register.php">Рeгистрация нового пользователя</a></p>
 
 </div>

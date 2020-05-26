@@ -43,8 +43,8 @@ if($set =="SUPER8"){
 		// Отправляем сообщение о рагистрации на указанную почту
 		$subject = "Регистрация на сайте tennis.online";
 		$message = "Добрый день! Вы оставили заявку на регистрацию на сайте tennis.online.<br>Для активации вашей учетной записи вам необходимо пройти по ссылке:<br>";
-		$message .= "<a href='{$_SERVER['REMOTE_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}'>";
-		$message .= "{$_SERVER['REMOTE_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}";
+		$message .= "<a href='{$_SERVER['SERVER_NAME']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}'>";
+		$message .= "{$_SERVER['SERVER_NAME']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}";
 		$message .= "</a><br>";
 		$message .= "==============================================<br>";
 		$message .= "С уважением. Администрация сайта tennis.online";
@@ -52,7 +52,7 @@ if($set =="SUPER8"){
 		SendMailGRMP($user_mail, $subject, $message, $sender_mail, $sender_name); // Отправляем почту
 
 		// Возвращаемся на страницу
-		header("Location: /entry.php"); exit();
+		header("Location: ../entry.php"); exit();
 	}
 }
 
