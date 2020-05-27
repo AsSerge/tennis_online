@@ -141,7 +141,7 @@
 													<li>
 														<div class="textwidget">
 															<ul>
-																<li> <a href="#" title=""> Ссылка 1 </a> </li>
+																<li> <a href="contest_shedule.php" title=""> Расписание конкурсов</a> </li>
 																<li> <a href="#" title=""> Ссылка 2 </a> </li>
 																<li> <a href="#" title=""> Ссылка 3 </a> </li>
 																<li> <a href="#" title=""> Ссылка 4 </a> </li>
@@ -377,7 +377,7 @@
 								</div>
 								<a class="dt-menu-expand">+</a>
 							</li>
-							<li class="menu-item-simple-parent menu-item-depth-0"><a href="contact.html">КОНТАКТЫ</a></li>
+							<li class="menu-item-simple-parent menu-item-depth-0"><a href="contact.php">КОНТАКТЫ</a></li>
 						</ul>
 					</nav>
 				</div>

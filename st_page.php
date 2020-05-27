@@ -12,6 +12,18 @@
 			<!-- header-wrapper starts here -->
 			<?php include ('./layout/header.php');?>
 			<!-- header-wrapper end here -->
+			<!-- breadcrumb starts here -->
+			<div class="breadcrumb-wrapper">
+				<div class="container">
+					<h1>Заголовок</h1>
+					<div class="breadcrumb">
+						<a href="index.html">Home</a>
+						<span class="default">  </span>
+						<h4>Заголовок</h4>
+					</div>
+				</div>
+			</div>
+			<!-- breadcrumb ends here -->
 			<div id="main">
 				<!-- main-content starts here -->
 				<div id="main-content">
