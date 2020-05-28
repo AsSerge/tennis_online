@@ -313,7 +313,7 @@
 								</div>
 								<a class="dt-menu-expand">+</a>
 							</li>
-							<li class="menu-item-simple-parent menu-item-depth-0"><a href="#"> ЖЮРИ </a></li>
+							<li class="menu-item-simple-parent menu-item-depth-0"><a href="refferies.php"> ЖЮРИ </a></li>
 							<li class="menu-item-simple-parent menu-item-depth-0"><a href="#"> ПРИЗЫ </a></li>
 							<li class="menu-item-megamenu-parent  megamenu-4-columns-group menu-item-depth-0"> <a href="shortcodes.html" title=""> WIKI TENNIS </a>
 								<div class="megamenu-child-container">
