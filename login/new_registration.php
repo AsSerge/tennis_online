@@ -16,8 +16,8 @@ function CheckMail ($db, $user_mail){
 	}
 }
 $set = $_POST['my_whwre'];
-$sender_mail = "Tsvetkov-SA@grmp.ru";
-$sender_name = "Сергей Цветков";
+$sender_mail = "info@mytennis.online";
+$sender_name = "Администратор";
 
 if($set =="SUPER8"){
 	$user_mail = htmlspecialchars($_POST['user_mail'], ENT_QUOTES);
