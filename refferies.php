@@ -1,4 +1,5 @@
 <?php include('./layout/site_head.php');?>
+<?php include('./layout/site_function.php');?>
 <?php
 include('login/log_to_base.php');
 // Список членов жюри
@@ -103,21 +104,27 @@ $juror = $all_data->fetch(PDO::FETCH_ASSOC);
 						</section>
 						<section id="primary" class="page-with-sidebar page-with-left-sidebar">
 							<div class="portfolio-single">
-								<div class="portfolio-single-slider-wrapper">
-									<ul class="portfolio-single-slider">
-										<li> <img src="images/players/photo/medvedev_bg.jpg" alt="" title=""> </li>
-										<li> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </li>
-										<li> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </li>
-										<li> <img src="images//portfolio4.jpg" alt="" title=""> </li>
-									</ul>
-									<div id="bx-pager">
-									  <a data-slide-index="0" href=""> <img src="images/players/photo/medvedev_bg.jpg" alt="" title=""> </a>
-									  <a data-slide-index="1" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
-									  <a data-slide-index="2" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
-									  <a data-slide-index="3" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
-									</div>
-								</div>
-								<div class="dt-sc-hr-invisible-medium"></div>
+								<?php								
+								$gal_dir = "./images/players/slider/".$juror['reff_image_dir'];
+								$juror_images = get_files_count($gal_dir);
+								if(count($juror_images) > 0){
+									echo "<div class='portfolio-single-slider-wrapper'>";
+									echo "	<ul class='portfolio-single-slider'>";
+									foreach($juror_images as $jimage){
+										echo "<li> <img src='{$gal_dir}/{$jimage}' alt='' title=''> </li>";
+									}
+									echo "	</ul>";
+									echo "	<div id='bx-pager'>";
+									$i=0;
+									foreach($juror_images as $jimage){
+										echo "<a data-slide-index='{$i}' href='#'> <img src='{$gal_dir}/{$jimage}' alt='' title=''> </a>";
+									$i++;
+									}
+									echo "	</div>";
+									echo "</div>";
+									echo "<div class='dt-sc-hr-invisible-medium'></div>";
+								}
+								?>
 								<div class="column dt-sc-two-third first">
 									<h4 class="border-title"> <span><?php echo "{$juror['reff_name']} {$juror['reff_surname']}";?></span></h4>
 									<?php
