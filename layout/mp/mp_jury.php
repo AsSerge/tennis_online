@@ -1,5 +1,6 @@
 <?php
 include('login/log_to_base.php');
+include('./layout/site_function.php');
 // Получаем базу челнов жюри
 $query = "SELECT * FROM refferies WHERE 1 LIMIT 8";
 $my_data = $db->prepare($query);
@@ -19,8 +20,11 @@ $jurors = $my_data->fetchAll(PDO::FETCH_ASSOC);
 			$date = DateTime::createFromFormat("Y-m-d", $j['reff_birth']);
 			$interval = $now->diff($date);
 			$age = $interval->y; // Получаем возраст в годах
-			// Всего титулов в обоих разрядах
-			$all_titles = $j['reff_titles_single'] + $j['reff_titles_double'];
+			$date_birth = mysql_to_date($j['reff_birth']);
+			// Наилучшее достижение
+			$best_title = min($j['reff_high_pos_single'], $j['reff_high_pos_double']);
+			// Призовые
+			$reff_prize = "$ ".number_format($j['reff_prize'], 0, " ", " ");
 			// Опыт: считаем годы от начала занятий
 			$experience = $age - $j['reff_class_start'];
 
@@ -32,10 +36,10 @@ $jurors = $my_data->fetchAll(PDO::FETCH_ASSOC);
 			echo "			<div class='team-detail'>";
 			echo "				<h4>Спортсмен</h4>";
 			echo "				<ul>";
-			echo "					<li><span class='fa fa-calendar'></span> <b>Возраст:</b> {$age} </li>";
-			echo "					<li><span class='fa fa-trophy'></span> <b>Титулов:</b> {$all_titles} </li>";
-			// echo "					<li><span class='fa fa-trophy'></span> <b>{$j['reff_cup_name']}:</b> {$j['reff_cup_value']} </li>";
-			echo "				  <li><span class='fa fa-certificate'></span> <b>Опыт:</b> {$experience}+ </li>";
+			echo "					<li><span class='fa fa-calendar'></span> <b>Дата рождения:</b> {$date_birth} </li>";
+			echo "					<li><span class='fa fa-trophy'></span> <b>Наивысшее достижение:</b> {$best_title} </li>";
+			echo "		 			<li><span class='fa fa-certificate'></span> <b>Опыт:</b> {$experience}+ </li>";
+			echo "					<li><span class='fa fa-money'></span> <b>Призовые:</b> {$reff_prize} </li>";			
 			echo "				</ul>";
 			echo "			</div>";
 			echo "		</div>";

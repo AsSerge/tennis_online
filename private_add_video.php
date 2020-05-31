@@ -42,34 +42,45 @@ include ('./login/line_check.php');
 									.one_move {
 										position: relative;
 										width: 100%;
-										height: 310px;
+										/* height: 310px; */
 										border: 1px solid rgb(223, 223, 223);
 										margin-bottom: 40px;
 									}
 								</style>
-								<div class="one_move"></div>
-								<input placeholder="Строка загрузки" type="text" name="">
-								<input placeholder="Загрузка обложки" type="text" name="">
+								<?php 
+								// Получаем и готовим линк
+								$vimeo_link = "https://vimeo.com/77270461";
+								$vimeo_short_link = str_replace("https://vimeo.com/", "", $vimeo_link);
+								?>
+
+								<div class="one_move">
+								<iframe src="https://player.vimeo.com/video/<?=$vimeo_short_link?>" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+								</div>
+								<input placeholder="Строка загрузки" type="text" name="mov_link">
+								<input placeholder="Загрузка обложки" type="text" name="mov_cover">
 
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
-								<input placeholder="Название ролика" type="text" name="">
-								<select name="cmbsubject">
-									<option value="contest0">Категория конкурса</option>
-									<option value="contest1">Удивительный теннис</option>
-									<option value="contest2">Семейный теннис</option>
-									<option value="contest3">Теннисная прокачка</option>
+								<input placeholder="Название ролика" type="text" name="mov_name">
+								<select name="mov_contest">
+									<option value="">Категория конкурса</option>
+									<option value="Удивительный теннис">Удивительный теннис</option>
+									<option value="Семейный теннис">Семейный теннис</option>
+									<option value="Теннисная прокачка">Теннисная прокачка</option>
+									<option value="Свой конкурс">Свой конкурс</option>
 								</select>
-								<textarea placeholder="Описание ролика"></textarea>
-
-								<input placeholder="Теги" type="text" name="">
-								<select name="cmbsubject">
-									<option value="contest0">Возрастная категория</option>
-									<option value="contest1">до 16 лет</option>
-									<option value="contest2">от 16 до 35 лет</option>
-									<option value="contest3">от 35 до 50 лет</option>
-									<option value="contest3">от 50 лет</option>
+								<textarea placeholder="Описание ролика" name = "mov_description"></textarea>
+								
+								<select name="mov_age_cat">
+									<option value="">Возрастная категория</option>
+									<option value="Любой">Любой</option>
+									<option value="до 8 лет">до 8 лет</option>
+									<option value="9-10 лет">9-10 лет</option>
+									<option value="до 13 лет">до 13 лет</option>
+									<option value="до 15 лет">до 15 лет</option>
+									<option value="до 17 лет">до 17 лет</option>
+									<option value="взрослые">взрослые</option>
 								</select>
 							</div>
 							<div style="text-align: center;">

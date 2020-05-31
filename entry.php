@@ -44,8 +44,7 @@ if(isset($_POST['submit']))
 	}
 	else
 	{
-		$error_message = "<div class = 'form-signin-error'><p>Вы ввели неправильный логин/пароль</p></div>";
-
+		$error_message = "<div class = 'form-signin-error'><p>Вы ввели неправильный логин/пароль или не активировали свою учетную запись по ссылке из активационного письма</p></div>";
 	}
 }
 ?>
@@ -84,7 +83,7 @@ if(isset($_POST['submit']))
 								<div class="form-wrapper register">
 									<form method="POST" id="reg_form" name="frmEntry" role="form">
 											<p>
-												<input name="login" type="text" class="form-control" placeholder="Логин (e-mail, введенный вами при регестрации)" required autofocus>
+												<input name="login" type="text" class="form-control" placeholder="Логин (e-mail, введенный вами при регистрации)" required autofocus>
 											</p>
 											<p>
 												<input placeholder="Пароль" type="password" id="user_password" name="password">
@@ -94,7 +93,9 @@ if(isset($_POST['submit']))
 											<!-- <button class="dt-sc-button small" name="submit" type="submit">Отправить</button> -->
 											<input class="dt-sc-button small" value="Войти" type="submit" name="submit">
 											<div class="dt-sc-hr-invisible-small"></div>
-											<p><a href = "register.php">Зарегистрироваться в системе</a></p>		
+											<p><a href = "register.php" title="Новая регистрация в системе">Зарегистрироваться в системе</a>
+											&nbsp;/&nbsp;<a href = "password_recovery.php" title="Ссылка для восстановления пароля будет выслана на указанную при регистрации почту">Я забыл пароль</a>
+											</p>
 									</form>
 								</div>
 							</div>

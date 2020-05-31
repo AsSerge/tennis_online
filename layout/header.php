@@ -217,12 +217,12 @@
 								</div>
 								<a class="dt-menu-expand">+</a>
 							</li>
-							<li class="menu-item-megamenu-parent  megamenu-4-columns-group menu-item-depth-0"> <a href="list-video.html"> РОЛИКИ </a>
+							<li class="menu-item-megamenu-parent  megamenu-4-columns-group menu-item-depth-0"> <a href="/list_video.php"> РОЛИКИ </a>
 								<div class="megamenu-child-container">
 									<ul class="sub-menu">
 										<li>
 											<div class="widgettitle">
-												<a href="#">СПИСОК РОЛИКОВ</a>
+												<a href="/list_video.php">СПИСОК РОЛИКОВ</a>
 											</div>
 											<div class="menu-item-widget-area-container">
 												<ul>

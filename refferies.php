@@ -142,12 +142,19 @@ $juror = $all_data->fetch(PDO::FETCH_ASSOC);
 							<div class="column dt-sc-two-third first">
 								<h4 class="border-title">
 									<span><?php echo "{$juror['reff_name']} {$juror['reff_surname']}";?></span></h4>
+								<p class="tags"><span class="fa fa-tag"></span> Титулы:&nbsp;&nbsp;&nbsp;&nbsp;
+									<?php
+										$titles_link = explode(";", $juror['reff_tags']);
+										foreach($titles_link as $tag){
+											echo "<a rel='tag' title='{$tag}' href='#'>{$tag}</a>";
+										}
+									?>
+								</p>
 								<?php
 									// Описание игрока
 									echo $juror['reff_description'];
-									?>
-								<p class="tags"><span class="fa fa-tag"></span> Титулы:&nbsp;&nbsp;&nbsp;&nbsp;<a
-										rel="tag" href="#">Uimbldon</a> </p>
+								?>
+
 							</div>
 							<div class="column dt-sc-one-third">
 
@@ -177,7 +184,7 @@ $juror = $all_data->fetch(PDO::FETCH_ASSOC);
 										<?php
 										// Подготовка данных
 										// Форматируемяа сумма призовых
-										$reff_prize = "$ ".number_format($juror['reff_prize'], 0);
+										$reff_prize = "$ ".number_format($juror['reff_prize'], 0, " ", " ");
 										// Всего титулов в обоих разрядах
 										$all_titles = $juror['reff_titles_single'] + $juror['reff_titles_double'];
 										?>
@@ -199,7 +206,11 @@ $juror = $all_data->fetch(PDO::FETCH_ASSOC);
 										$high_pos_single = "#&nbsp;".$juror['reff_high_pos_single']." ({$reff_high_pos_single_date})";
 										?>
 										<ul class="project-details">
-											<li><span class="fa fa-line-chart"></span><strong>Текущий рейтинг: </strong><?=$current_rating?></li>
+											<?php
+												if($juror['reff_status'] == "Спортсмен"){
+													echo "<li><span class='fa fa-line-chart'></span><strong>Текущий рейтинг: </strong>{$current_rating}</li>"; 
+												}
+											?>
 											<li><span class="fa fa-certificate"></span><strong>Наивысшая позиция: </strong><?=$high_pos_single?></li>
 											<li><span class="fa fa-trophy"></span><strong>Титулов (single): </strong><?=$juror['reff_titles_single']?></li>
 											<li><span class="fa fa-trophy"></span><strong>Win/Lost (single): </strong><?=$juror['reff_wl_single']?></li>
@@ -218,7 +229,11 @@ $juror = $all_data->fetch(PDO::FETCH_ASSOC);
 										$high_pos_double = "#&nbsp;".$juror['reff_high_pos_double']." ({$reff_high_pos_double_date})";
 										?>
 										<ul class="project-details">
-											<li><span class="fa fa-line-chart"></span><strong>Текущий рейтинг: </strong><?=$current_rating_2?></li>
+											<?php
+												if($juror['reff_status'] == "Спортсмен"){
+													echo "<li><span class='fa fa-line-chart'></span><strong>Текущий рейтинг: </strong>{$current_rating_2}</li>"; 
+												}
+											?>
 											<li><span class="fa fa-certificate"></span><strong>Наивысшая позиция: </strong><?=$high_pos_double?></li>
 											<li><span class="fa fa-trophy"></span><strong>Титулов (double): </strong><?=$juror['reff_titles_double']?></li>
 											<li><span class="fa fa-trophy"></span><strong>Win/Lost (double): </strong><?=$juror['reff_wl_double']?></li>

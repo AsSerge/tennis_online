@@ -42,10 +42,10 @@
 										name="frmRegister" role="form">
 										<input type="hidden" name="my_whwre" value="SUPER8">
 										
-										<!-- <p class="dt-sc-one-half column first">
-											<input placeholder="Имя или псевдоним (Логин)" id="user_login" type="text"
-												name="user_login" required></p> -->
-
+										<p class="first">
+										Введите адрес электронной почты и пароль для регистрации в системе. Этот адрес будет использоваться в качестве логина при авторизации. После регистрации на указанный вами почтовый ящик будет отправлено письмо для активации вашей учетной записи. Для активации необходимо пройти по ссылке из письма. 
+										</p>
+										<div class="dt-sc-hr-invisible-small"></div>
 										<p class="dt-sc-one-column column">
 											<input placeholder="Электронная почта" id="user_mail" type="email"
 												name="user_mail" required>
