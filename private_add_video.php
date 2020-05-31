@@ -52,25 +52,28 @@ include ('./login/line_check.php');
 								$vimeo_link = "https://vimeo.com/77270461";
 								$vimeo_short_link = str_replace("https://vimeo.com/", "", $vimeo_link);
 								?>
-
+								<input placeholder="Название ролика" type="text" name="mov_name">
 								<div class="one_move">
-								<iframe src="https://player.vimeo.com/video/<?=$vimeo_short_link?>" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+									<iframe src="https://player.vimeo.com/video/<?=$vimeo_short_link?>" width="640"
+										height="360" frameborder="0" allow="autoplay; fullscreen"
+										allowfullscreen></iframe>
 								</div>
-								<input placeholder="Строка загрузки" type="text" name="mov_link">
-								<input placeholder="Загрузка обложки" type="text" name="mov_cover">
+								<textarea placeholder="Описание ролика" name="mov_description"></textarea>
+								
+								<!-- <input placeholder="Загрузка обложки" type="text" name="mov_cover"> -->
 
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
-								<input placeholder="Название ролика" type="text" name="mov_name">
-								<select name="mov_contest">
+
+							<input placeholder="Строка загрузки" type="text" name="mov_link">
+								<select name="mov_contest">									
 									<option value="">Категория конкурса</option>
 									<option value="Удивительный теннис">Удивительный теннис</option>
 									<option value="Семейный теннис">Семейный теннис</option>
 									<option value="Теннисная прокачка">Теннисная прокачка</option>
 									<option value="Свой конкурс">Свой конкурс</option>
 								</select>
-								<textarea placeholder="Описание ролика" name = "mov_description"></textarea>
 								
 								<select name="mov_age_cat">
 									<option value="">Возрастная категория</option>
@@ -82,6 +85,66 @@ include ('./login/line_check.php');
 									<option value="до 17 лет">до 17 лет</option>
 									<option value="взрослые">взрослые</option>
 								</select>
+								<style>
+									.move_check input {
+										position: absolute;
+										/* z-index: -1; */
+										opacity: 0;
+									}
+
+									.move_check span {
+										margin-right: 5px;
+										line-height: 2.5rem;
+
+									}
+
+									.move_check label {
+										padding: 8px;
+										color: #FFF;
+										background-color: #179ed6;
+										cursor: pointer;
+									}
+								</style>
+
+								<aside class="widget">
+									<div class="widgettitle">
+										<h3>Тэги</h3><span></span>
+									</div>
+									<div class="move_check">
+										<?php
+										$mov_contest_arr = array('Скорость', 'Сила', 'Выносливость', 'Координация', 'Концентрация', 'Точность', 'Гибкость', 'Кардио');
+										$k=0;
+										foreach($mov_contest_arr as $contest){
+											echo "<span><nobr>";
+											echo "<input type='checkbox' id='kap{$k}' name='kap{$k}' value='yes'>";
+											echo "<label for='kap{$k}'>{$contest}</label>";
+											echo "</nobr></span>";
+										$k++;	
+										}
+										?>
+
+									</div>
+								</aside>
+								<aside class="widget">
+									<div class="widgettitle">
+										<h3>Принадлежности</h3><span></span>
+									</div>
+									<div class="move_check">
+										<?php
+										$mov_equipment_arr = array('Скакалка', 'Ракетка', 'Теннисный мяч', 'Весовой мяч', 'Фитбол', 'Подставка/степ-платформа', 'Гантели', 'Коврик', 'Обруч', 'Тросы и ленты', 'Утяжелитель', 'Балансировочный тренажер', 'Эспандер', 'Батут', 'Скамейка/стул', 'Другое');
+										$k=0;
+										foreach($mov_equipment_arr as $equipment){
+											echo "<span><nobr>";
+											echo "<input type='checkbox' id='equ{$k}' name='equ{$k}' value='yes'>";
+											echo "<label for='equ{$k}'>{$equipment}</label>";
+											echo "</nobr></span>";
+										$k++;	
+										}
+										?>
+									</div>
+								</aside>
+
+
 							</div>
 							<div style="text-align: center;">
 

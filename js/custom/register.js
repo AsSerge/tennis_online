@@ -68,6 +68,22 @@ jQuery(window).load(function ($) {
 		}
 	});
 
+	$('.move_check span').on("click", function () {
+
+		var ch = $(this).find('input').prop('checked');
+
+		if (ch == true) {
+			$(this).find('input').prop('checked', false);
+			// $(this).find('label').css('font-weight', 'normal');
+			$(this).find('label').css('background-color', '#179ed6');
+		}
+		if (ch == false) {
+			$(this).find('input').prop('checked', true);
+			// $(this).find('label').css('font-weight', 'bold');
+			$(this).find('label').css('background-color', '#056690');
+		}
+	});
+
 
 
 });
