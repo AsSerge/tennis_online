@@ -84,7 +84,7 @@ if(isset($_POST['submit']))
 								<div class="form-wrapper register">
 									<form method="POST" id="reg_form" name="frmEntry" role="form">
 											<p>
-												<input name="login" type="text" class="form-control" placeholder="Логин" required autofocus>
+												<input name="login" type="text" class="form-control" placeholder="Логин (e-mail, введенный вами при регестрации)" required autofocus>
 											</p>
 											<p>
 												<input placeholder="Пароль" type="password" id="user_password" name="password">

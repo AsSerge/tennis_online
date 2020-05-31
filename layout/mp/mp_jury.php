@@ -14,6 +14,16 @@ $jurors = $my_data->fetchAll(PDO::FETCH_ASSOC);
 		$idelay = 100; // Настройка появления членов жюри
 
 		foreach ($jurors as $j) {
+			// Подготовка данных
+			$now = new DateTime();
+			$date = DateTime::createFromFormat("Y-m-d", $j['reff_birth']);
+			$interval = $now->diff($date);
+			$age = $interval->y; // Получаем возраст в годах
+			// Всего титулов в обоих разрядах
+			$all_titles = $j['reff_titles_single'] + $j['reff_titles_double'];
+			// Опыт: считаем годы от начала занятий
+			$experience = $age - $j['reff_class_start'];
+
 			echo "<div class='dt-sc-one-fourth column first animate' data-animation='fadeInLeft' data-delay='{$idelay}'>";
 			echo "	<div class='dt-sc-team type2'>";
 			echo "		<div class='team-thumb'>";
@@ -22,10 +32,10 @@ $jurors = $my_data->fetchAll(PDO::FETCH_ASSOC);
 			echo "			<div class='team-detail'>";
 			echo "				<h4>Спортсмен</h4>";
 			echo "				<ul>";
-			echo "					<li><span class='fa fa-calendar'></span> <b>Возраст:</b> {$j['reff_age']} </li>";
-			echo "					<li><span class='fa fa-trophy'></span> <b>Титулов:</b> {$j['reff_titles']} </li>";
-			echo "					<li><span class='fa fa-trophy'></span> <b>{$j['reff_cup_name']}:</b> {$j['reff_cup_value']} </li>";
-			echo "				  <li><span class='fa fa-certificate'></span> <b>Опыт:</b> {$j['reff_experience']} </li>";
+			echo "					<li><span class='fa fa-calendar'></span> <b>Возраст:</b> {$age} </li>";
+			echo "					<li><span class='fa fa-trophy'></span> <b>Титулов:</b> {$all_titles} </li>";
+			// echo "					<li><span class='fa fa-trophy'></span> <b>{$j['reff_cup_name']}:</b> {$j['reff_cup_value']} </li>";
+			echo "				  <li><span class='fa fa-certificate'></span> <b>Опыт:</b> {$experience}+ </li>";
 			echo "				</ul>";
 			echo "			</div>";
 			echo "		</div>";
@@ -40,6 +50,6 @@ $jurors = $my_data->fetchAll(PDO::FETCH_ASSOC);
 			$idelay = $idelay + 200; 
 		}
 		?>
-		<a class="dt-sc-button small" href="#" data-hover="Весь список"> Просмотреть </a>
+		<a class="dt-sc-button small" href="/refferies.php" data-hover="Весь список"> Просмотреть </a>
 	</div>
 </div>
