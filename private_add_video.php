@@ -57,24 +57,30 @@ include ('./login/line_check.php');
 									<iframe src="https://player.vimeo.com/video/<?=$vimeo_short_link?>" width="640"
 										height="360" frameborder="0" allow="autoplay; fullscreen"
 										allowfullscreen></iframe>
+
+									<!-- <blockquote class="instagram-media" data-instgrm-version="7">
+										<a href="https://www.instagram.com/p/CAIm3SDn54v/"></a>
+									</blockquote>
+									<script async defer src="//platform.instagram.com/en_US/embeds.js"></script> -->
+
 								</div>
 								<textarea placeholder="Описание ролика" name="mov_description"></textarea>
-								
+
 								<!-- <input placeholder="Загрузка обложки" type="text" name="mov_cover"> -->
 
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
 
-							<input placeholder="Строка загрузки" type="text" name="mov_link">
-								<select name="mov_contest">									
+								<input placeholder="Строка загрузки" type="text" name="mov_link">
+								<select name="mov_contest">
 									<option value="">Категория конкурса</option>
 									<option value="Удивительный теннис">Удивительный теннис</option>
 									<option value="Семейный теннис">Семейный теннис</option>
 									<option value="Теннисная прокачка">Теннисная прокачка</option>
 									<option value="Свой конкурс">Свой конкурс</option>
 								</select>
-								
+
 								<select name="mov_age_cat">
 									<option value="">Возрастная категория</option>
 									<option value="Любой">Любой</option>
