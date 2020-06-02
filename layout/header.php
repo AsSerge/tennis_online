@@ -18,7 +18,9 @@
 		<div class="main-menu-container">
 			<div class="main-menu">
 				<div id="logo">
-					<a title="Федерация Тенниса России" href="/"><img title="Федерация Тенниса России" alt="Федерация Тенниса России" src="images/section-1-pic-1.svg"></a>
+					<!-- <a title="Федерация Тенниса России" href="/"><img title="Федерация Тенниса России" alt="Федерация Тенниса России" src="images/section-1-pic-1.svg"></a> -->
+					<a title="Федерация Тенниса России" href="/"><img title="Федерация Тенниса России" alt="Федерация Тенниса России" src="images/logo/logo.svg"></a>
+
 				</div>
 				<div id="primary-menu">
 					<div class="dt-menu-toggle" id="dt-menu-toggle">Меню<span class="dt-menu-toggle-icon"></span></div>
@@ -314,7 +316,7 @@
 								<a class="dt-menu-expand">+</a>
 							</li>
 							<li class="menu-item-simple-parent menu-item-depth-0"><a href="refferies.php"> ЖЮРИ </a></li>
-							<li class="menu-item-simple-parent menu-item-depth-0"><a href="#"> ПРИЗЫ </a></li>
+							<li class="menu-item-simple-parent menu-item-depth-0"><a href="prizes.php"> ПРИЗЫ </a></li>
 							<li class="menu-item-megamenu-parent  megamenu-4-columns-group menu-item-depth-0"> <a href="shortcodes.html" title=""> WIKI TENNIS </a>
 								<div class="megamenu-child-container">
 									<ul class="sub-menu">
