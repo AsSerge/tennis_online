@@ -42,37 +42,88 @@ include ('./login/line_check.php');
 									.one_move {
 										position: relative;
 										width: 100%;
-										/* height: 310px; */
+										/* height: 235px;
+										overflow: hidden; */
 										border: 1px solid rgb(223, 223, 223);
 										margin-bottom: 40px;
+									}
+									.instagram-media{
+										border-color: white !important;
 									}
 								</style>
 								<?php 
 								// Получаем и готовим линк
-								$vimeo_link = "https://vimeo.com/77270461";
-								$vimeo_short_link = str_replace("https://vimeo.com/", "", $vimeo_link);
+								// $mov_link = "https://vimeo.com/77270461";
+								// $mov_link = "https://www.instagram.com/p/CAIm3SDn54v";
+								$mov_link = '<iframe width="560" height="315" src="https://www.youtube.com/embed/gPehzeW22fY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+								// Получаем тип ссылки
+								// $mov_link_type = "vimeo";
+								// $mov_link_type = "instagram";
+								$mov_link_type = "youtube";
+								// Функция GetVideoContent (ссылка на ролик, тип ролика) Для YouTube В зависимости от вида ссылки, вынимает код ролика
+								// Принимаются ссылки следующего вида:
+								// vimeo:	https://vimeo.com/77270461
+								// instagramm: https://www.instagram.com/p/CAIm3SDn54v
+								// youtube:	<iframe>...</iframe>
+								//			https://youtu.be/gPehzeW22fY
+								// 			https://www.youtube.com/watch?v=gPehzeW22fY
+
+
+								function GetVideoContent ($mov_link, $mov_link_type){
+									switch ($mov_link_type){
+										case "vimeo":
+											$video_link = str_replace("https://vimeo.com/", "", $mov_link);
+											$video_frame_content = "
+											<iframe src='https://player.vimeo.com/video/{$video_link}' width='640'
+												height='360' frameborder='0' allow='autoplay; fullscreen'
+												allowfullscreen></iframe>";
+											break;
+										case "instagram":
+											$video_link = str_replace("https://www.instagram.com/p/", "", $mov_link);
+											$video_frame_content = "
+											<blockquote class='instagram-media' data-instgrm-version='7'>
+											<a href='https://www.instagram.com/p/{$video_link}/media/?size=s'></a>
+											</blockquote>
+											<script async defer src='//platform.instagram.com/en_US/embeds.js'></script>";
+											break;
+										case "youtube":
+											// Определение типа YouTube ссылки
+											if(preg_match('/^https:\/\/youtu.be\//', $mov_link)){
+												$video_link = str_replace("https://youtu.be/", "", $mov_link);
+											}elseif (preg_match('/^https:\/\/www.youtube.com\/watch\?v=/', $mov_link)) {
+												$video_link = str_replace("https://www.youtube.com/watch?v=", "", $mov_link);
+											}elseif(preg_match('/src="https:\/\/www.youtube.com\/embed\//', $mov_link)){
+												preg_match('/(\/embed\/)(\S+\b)/', $mov_link, $vlink_raw);
+												$video_link = $vlink_raw[2];}
+											$video_frame_content = "
+											<iframe width='100%' height='350px'src='https://www.youtube.com/embed/{$video_link}' 
+												frameborder='0' 
+												allow='accelerometer; 
+												autoplay; 
+												encrypted-media; 
+												gyroscope; 
+												picture-in-picture' 
+												allowfullscreen>
+												</iframe>";
+											break;
+										default:
+											echo "Видео не загружено";
+									}
+									return  $video_frame_content;
+								}
 								?>
-								<input placeholder="Название ролика" type="text" name="mov_name">
-								<div class="one_move">
-									<iframe src="https://player.vimeo.com/video/<?=$vimeo_short_link?>" width="640"
-										height="360" frameborder="0" allow="autoplay; fullscreen"
-										allowfullscreen></iframe>
-
-									<!-- <blockquote class="instagram-media" data-instgrm-version="7">
-										<a href="https://www.instagram.com/p/CAIm3SDn54v/"></a>
-									</blockquote>
-									<script async defer src="//platform.instagram.com/en_US/embeds.js"></script> -->
-
+								<input placeholder="Строка загрузки" type="text" name="mov_link">
+								<div class="one_move"><center>
+									<?=GetVideoContent($mov_link, $mov_link_type);?>
+									</center>
 								</div>
-								<textarea placeholder="Описание ролика" name="mov_description"></textarea>
-
+								<textarea placeholder="Описание ролика (не более 200 знаков)" name="mov_description"></textarea>
 								<!-- <input placeholder="Загрузка обложки" type="text" name="mov_cover"> -->
-
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
 
-								<input placeholder="Строка загрузки" type="text" name="mov_link">
+							<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name">
 								<select name="mov_contest">
 									<option value="">Категория конкурса</option>
 									<option value="Удивительный теннис">Удивительный теннис</option>
