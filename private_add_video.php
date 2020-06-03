@@ -80,7 +80,12 @@ include ('./login/line_check.php');
 												allowfullscreen></iframe>";
 											break;
 										case "instagram":
-											$video_link = str_replace("https://www.instagram.com/p/", "", $mov_link);
+											preg_match('/^https:\/\/www.instagram.com\/p\/(\S+\b)(\/)/', $mov_link, $vlink_raw);
+											if($vlink_raw[2] == '/'){
+												$video_link = $vlink_raw[1]; 
+											}else{
+												$video_link = str_replace("https://www.instagram.com/p/", "", $mov_link);
+											}
 											$video_frame_content = "
 											<blockquote class='instagram-media' data-instgrm-version='7'>
 											<a href='https://www.instagram.com/p/{$video_link}/media/?size=s'></a>

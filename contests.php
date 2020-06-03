@@ -60,10 +60,10 @@
 												<h3>Категории Конкурсов</h3>
 											</div>
 											<ul>
-												<li class="cat-item"><a title="Удиви всех уникальными способностями." href="#">Удивительный теннис<span> 1</span></a></li>
-												<li class="cat-item"><a title="Вовлекай своих родных в тренировки дома." href="#">Семейный теннис<span> 1</span></a></li>
-												<li class="cat-item"><a title="Максимальная эффективность за минимальное время." href="#">Теннисная прокачка<span> 1</span></a></li>
-												<li class="cat-item"><a title="Создай свой конкурс и запусти вместе с ФТР!" href="#">Свой конкурс<span> 2</span></a></li>
+												<li class="cat-item"><a title="Удиви всех уникальными способностями." href="contests.php?co=1#co_head">Удивительный теннис<span> 1</span></a></li>
+												<li class="cat-item"><a title="Вовлекай своих родных в тренировки дома." href="contests.php?co=2#co_head">Семейный теннис<span> 1</span></a></li>
+												<li class="cat-item"><a title="Максимальная эффективность за минимальное время." href="contests.php?co=3#co_head">Теннисная прокачка<span> 1</span></a></li>
+												<li class="cat-item"><a title="Создай свой конкурс и запусти вместе с ФТР!" href="contests.php?co=4#co_head">Свой конкурс<span> 2</span></a></li>
 											</ul>
 										</aside>
 
@@ -81,154 +81,39 @@
 											</div>
 										</aside>
 									</section>
-
+									<div id="co_head"></div>
 									<section id="primary" class="page-with-sidebar page-with-left-sidebar">
 									<div class="portfolio-single">
-										<?php include('./layout/co/co_0.php')?>
-
-										<!-- <div class="dt-sc-hr-border"></div> -->
-
-										<div class="column dt-sc-tree-third first">
-												<h4 class="border-title"> <span>Вручение призов</span> </h4>
-												<p>В конкурсах вручается несколько видов призов* (подробнее по <a href="prizes.php"><strong>ссылке</strong></a>):</p>
-												<p><strong>Призы Победителям :</strong> призы вручаются Организатором или Партнерами конкурсов в магазинах, офисах или курьерской службой в зависимости от местонахождения победителя.</p>
-												<p><strong>Призы Финалистам:</strong> призы вручаются Партнерами конкурсов в магазинах по адресу, который выбрал финалист конкурса. Если в регионе проживания нет магазина Партнера, то приз доставляется курьерской службой.</p>
-												<p><strong>Призы активным Участникам:</strong> призы предоставляются Организатором конкурса в офисах и региональных представительствах.</p>
-												<p>*Чтобы гарантировано получить свой приз указывайте при регистрации действующий адрес электронной почты и следите за результатами.</p>
-										</div>
-
-										<div class="dt-sc-hr-border"></div>
-
-																<div class="column dt-sc-tree-third first">
-																		<h7 class="border-title"> <span>Категория "Удивительный теннис"</span> </h7>
-																		<p>Здесь описываем, что в данной категории должен снять пользователь - какой ролик,что на нем должно быть. </p>
-																		<div class="dt-sc-hr-border"></div>
-																		<p>Ниже приводится пример ролика для указанной категории, но Ваша фантазия и творчество точно не могут быть ограничены этим примером.</p>
-																		<h6 class="border-title"> <span>Пример ролика</span> </h6>
-
-																		<div class="menu-item-widget-area-container">
-																							<article class="blog-entry format-link">
-																									<div class="blog-entry-inner">
-																											<div class="entry-title">
-																													<h7><strong>Категория: Удивительный теннис</strong></h7>
-																													<h4><a href="#">Скалка - скакалка</a></h4>
-																													<p class="tags"> Автор: <a href="#"> М. Николай</a></p>
-																													<div class="entry-metadata">
-																															<p class="tagcloud">Тэги: <a href="#"> Выносливость </a> / <a href="#"> Скорость </a></p>
-																													</div>
-																											</div>
-																											<div class="dt-excersise-thumb">
-																												<iframe src="https://player.vimeo.com/video/218734869" height="250"></iframe>
-																											</div>
-																											<div class="entry-title">
-																												<p class="tags"> Принадлежности: <a href="#"> Скакалка </a> / <a href="#"> Скамейка </a></p>
-																											</div>
-																									</div>
-																							</article>
-																			</div>
-																</div>
-
-																<div class="dt-sc-hr-border"></div>
-
-																<div class="column dt-sc-tree-third first">
-																		<h7 class="border-title"> <span>Категория "Семейный теннис"</span> </h7>
-																		<p>Здесь описываем, что в данной категории должен снять пользователь - какой ролик,что на нем должно быть. </p>
-																		<div class="dt-sc-hr-border"></div>
-																		<p>Ниже приводится пример ролика для указанной категории, но Ваша фантазия и творчество точно не могут быть ограничены этим примером.</p>
-																		<h6 class="border-title"> <span>Пример ролика</span> </h6>
-
-																		<div class="menu-item-widget-area-container">
-																							<article class="blog-entry format-link">
-																									<div class="blog-entry-inner">
-																											<div class="entry-title">
-																													<h7><strong>Категория: Семейный теннис</strong></h7>
-																													<h4><a href="#">Скалка - скакалка</a></h4>
-																													<p class="tags"> Автор: <a href="#"> М. Николай</a></p>
-																													<div class="entry-metadata">
-																															<p class="tagcloud">Тэги: <a href="#"> Выносливость </a> / <a href="#"> Скорость </a></p>
-																													</div>
-																											</div>
-																											<div class="dt-excersise-thumb">
-																												<iframe src="https://player.vimeo.com/video/218734869" height="250"></iframe>
-																											</div>
-																											<div class="entry-title">
-																												<p class="tags"> Принадлежности: <a href="#"> Скакалка </a> / <a href="#"> Скамейка </a></p>
-																											</div>
-																									</div>
-																							</article>
-																			</div>
-																</div>
-
-																<div class="dt-sc-hr-border"></div>
-
-																<div class="column dt-sc-tree-third first">
-																		<h7 class="border-title"> <span>Категория "Теннисная прокачка"</span> </h7>
-																		<p>Здесь описываем, что в данной категории должен снять пользователь - какой ролик,что на нем должно быть. </p>
-																		<div class="dt-sc-hr-border"></div>
-																		<p>Ниже приводится пример ролика для указанной категории, но Ваша фантазия и творчество точно не могут быть ограничены этим примером.</p>
-																		<h6 class="border-title"> <span>Пример ролика</span> </h6>
-
-																		<div class="menu-item-widget-area-container">
-																							<article class="blog-entry format-link">
-																									<div class="blog-entry-inner">
-																											<div class="entry-title">
-																												<h4><a href="#">Скалка - скакалка</a></h4>
-																												<p class="tags"> Автор: <a href="#"> М. Николай</a></p>
-																												<div class="entry-metadata">
-																														<p class="tagcloud">Тэги: <a href="#"> Выносливость </a> / <a href="#"> Скорость </a></p>
-																												</div>
-																										</div>
-																										<div class="dt-excersise-thumb">
-																											<iframe src="https://player.vimeo.com/video/218734869" height="250"></iframe>
-																										</div>
-																										<div class="entry-title">
-																											<p class="tags"> Принадлежности: <a href="#"> Скакалка </a> / <a href="#"> Скамейка </a></p>
-																										</div>
-																								</div>
-																							</article>
-																			</div>
-																</div>
-
-																<div class="dt-sc-hr-border"></div>
-
-																<div class="column dt-sc-tree-third first">
-																		<h7 class="border-title"> <span>Категория "Свой конкурс"</span> </h7>
-																		<p>Здесь описываем, что в данной категории должен снять пользователь - какой ролик,что на нем должно быть. </p>
-																		<div class="dt-sc-hr-border"></div>
-																		<p>Ниже приводится пример ролика для указанной категории, но Ваша фантазия и творчество точно не могут быть ограничены этим примером.</p>
-
-																		<h6 class="border-title"> <span>Пример ролика</span> </h6>
-
-																		<div class="menu-item-widget-area-container">
-																							<article class="blog-entry format-link">
-																									<div class="blog-entry-inner">
-																											<div class="entry-title">
-																													<h7><strong>Категория: Свой конкурс</strong></h7>
-																													<h4><a href="#">Скалка - скакалка</a></h4>
-																													<p class="tags"> Автор: <a href="#"> М. Николай</a></p>
-																													<div class="entry-metadata">
-																															<p class="tagcloud">Тэги: <a href="#"> Выносливость </a> / <a href="#"> Скорость </a></p>
-																													</div>
-																											</div>
-																											<div class="dt-excersise-thumb">
-																												<iframe src="https://player.vimeo.com/video/218734869" height="250"></iframe>
-																											</div>
-																											<div class="entry-title">
-																												<p class="tags"> Принадлежности: <a href="#"> Скакалка </a> / <a href="#"> Скамейка </a></p>
-																											</div>
-																									</div>
-																							</article>
-																			</div>
-																</div>
-
-																	<div class="dt-sc-hr-invisible-small"></div>
+										<?php 
+											$co = $_GET['co'];
+											switch ($co) {
+												case '':
+													include('./layout/co/co_0.php');
+													break;
+												case '1':
+													include('./layout/co/co_1.php');
+													break;
+												case '2':
+													include('./layout/co/co_2.php');
+													break;
+												case '3':
+													include('./layout/co/co_3.php');
+													break;
+												case '4':
+													include('./layout/co/co_4.php');
+													break;	
+												default:
+													include('./layout/co/co_0.php');
+													break;
+											}
+										?>
 									</div>
-															</section>
+									</section>
 						</div>
 						<!-- support starts here -->
 						<div class="dt-sc-hr-invisible-large"></div>
 					</section>
-									</div>
+				</div>
 				<!-- main-content ends here -->
 
 				<!-- main-content ends here -->

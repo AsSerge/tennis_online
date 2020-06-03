@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Страница авторизации
 include($_SERVER['DOCUMENT_ROOT'].'/login/log_to_base.php');
 
@@ -80,6 +81,12 @@ if(isset($_POST['submit']))
 					<section id="primary" class="content-full-width">
 						<div class="fullwidth-section dt-sc-paralax full-pattern6">
 							<div class="container">
+							<div style="text-align: center; color: red;">
+							<?php
+							echo $_SESSION['info'];
+							$_SESSION['info'] = '';
+							?>
+							</div>
 								<div class="form-wrapper register">
 									<form method="POST" id="reg_form" name="frmEntry" role="form">
 											<p>
