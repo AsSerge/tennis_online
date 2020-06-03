@@ -36,7 +36,7 @@ include ('./login/line_check.php');
 					<div class="container">
 						<h3 class="border-title"> <span> Добавление ролика </span></h3>
 
-						<form method="POST">
+						<form method="POST" action="./login/move_save_exe.php">
 							<div class="dt-sc-three-sixth column first">
 								<style>
 									.one_move {
@@ -47,7 +47,8 @@ include ('./login/line_check.php');
 										border: 1px solid rgb(223, 223, 223);
 										margin-bottom: 40px;
 									}
-									.instagram-media{
+
+									.instagram-media {
 										border-color: white !important;
 									}
 								</style>
@@ -113,17 +114,19 @@ include ('./login/line_check.php');
 								}
 								?>
 								<input placeholder="Строка загрузки" type="text" name="mov_link">
-								<div class="one_move"><center>
-									<?=GetVideoContent($mov_link, $mov_link_type);?>
+								<div class="one_move">
+									<center>
+										<?=GetVideoContent($mov_link, $mov_link_type);?>
 									</center>
 								</div>
-								<textarea placeholder="Описание ролика (не более 200 знаков)" name="mov_description"></textarea>
+								<textarea placeholder="Описание ролика (не более 200 знаков)"
+									name="mov_description"></textarea>
 								<!-- <input placeholder="Загрузка обложки" type="text" name="mov_cover"> -->
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
 
-							<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name">
+								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name">
 								<select name="mov_contest">
 									<option value="">Категория конкурса</option>
 									<option value="Удивительный теннис">Удивительный теннис</option>
@@ -152,7 +155,7 @@ include ('./login/line_check.php');
 									.move_check span {
 										margin-right: 5px;
 										line-height: 2.5rem;
-
+										display: inline-block;
 									}
 
 									.move_check label {
@@ -172,10 +175,12 @@ include ('./login/line_check.php');
 										$mov_contest_arr = array('Скорость', 'Сила', 'Выносливость', 'Координация', 'Концентрация', 'Точность', 'Гибкость', 'Кардио');
 										$k=0;
 										foreach($mov_contest_arr as $contest){
-											echo "<span><nobr>";
-											echo "<input type='checkbox' id='kap{$k}' name='kap{$k}' value='yes'>";
-											echo "<label for='kap{$k}'>{$contest}</label>";
-											echo "</nobr></span>";
+											echo "<span>";
+											// echo "<input type='checkbox' id='kap{$k}' name='kap{$k}' value='yes'>";
+											// echo "<label for='kap{$k}'>{$contest}</label>";
+											echo "<input type='checkbox' id='tags{$k}' name='tags[]' value='{$contest}'>";
+											echo "<label for='tags'>{$contest}</label>";
+											echo "</span>";
 										$k++;	
 										}
 										?>
@@ -191,10 +196,10 @@ include ('./login/line_check.php');
 										$mov_equipment_arr = array('Скакалка', 'Ракетка', 'Теннисный мяч', 'Весовой мяч', 'Фитбол', 'Подставка/степ-платформа', 'Гантели', 'Коврик', 'Обруч', 'Тросы и ленты', 'Утяжелитель', 'Балансировочный тренажер', 'Эспандер', 'Батут', 'Скамейка/стул', 'Другое');
 										$k=0;
 										foreach($mov_equipment_arr as $equipment){
-											echo "<span><nobr>";
-											echo "<input type='checkbox' id='equ{$k}' name='equ{$k}' value='yes'>";
-											echo "<label for='equ{$k}'>{$equipment}</label>";
-											echo "</nobr></span>";
+											echo "<span>";
+											echo "<input type='checkbox' id='equipment{$k}' name='equipment[]' value='{$equipment}'>";
+											echo "<label for='equipment{$k}'>{$equipment}</label>";
+											echo "</span>";
 										$k++;	
 										}
 										?>
@@ -204,9 +209,10 @@ include ('./login/line_check.php');
 
 							</div>
 							<div style="text-align: center;">
-
-								<a href="private_add_video.php" class="dt-sc-button small"
-									data-hover="Новый ролик">Отправить на конкурс</a>
+								<input type="submit" class="dt-sc-button small" data-hover="Новый ролик"
+									value="Отправить на конкурс">
+								<!-- <a href="private_add_video.php" class="dt-sc-button small" 
+									data-hover="Новый ролик">Отправить на конкурс</a> -->
 							</div>
 							<div class="dt-sc-hr-invisible-small"></div>
 						</form>
