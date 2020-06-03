@@ -26,7 +26,7 @@
 					<div class="dt-menu-toggle" id="dt-menu-toggle">Меню<span class="dt-menu-toggle-icon"></span></div>
 					<nav id="main-menu">
 						<ul id="menu-main-menu" class="menu">
-							<li class="menu-item-megamenu-parent  megamenu-4-columns-group menu-item-depth-0"> <a href="list-players.html">КОНКУРСЫ</a>
+							<li class="menu-item-megamenu-parent  megamenu-4-columns-group menu-item-depth-0"> <a href="contests.php">КОНКУРСЫ</a>
 								<div class="megamenu-child-container">
 									<ul class="sub-menu">
 										<li class="menu-item-fullwidth fill-four-columns">
