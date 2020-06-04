@@ -1,5 +1,6 @@
 <?php
 include ('./login/line_check.php');
+include ('./layout/site_function.php');
 ?>
 <?php include('./layout/site_head.php');?>
 <!-- Loader starts here -->
@@ -47,12 +48,12 @@ include ('./login/line_check.php');
 										border: 1px solid rgb(223, 223, 223);
 										margin-bottom: 40px;
 									}
-
 									.instagram-media {
 										border-color: white !important;
 									}
 								</style>
-								<?php 
+								<?php
+								
 								// Получаем и готовим линк
 								// $mov_link = "https://vimeo.com/77270461";
 								// $mov_link = "https://www.instagram.com/p/CAIm3SDn54v";
@@ -116,32 +117,46 @@ include ('./login/line_check.php');
 											echo "Видео не загружено";
 									}
 									return  $video_frame_content;
-								}
+
+								}								
 								?>
-								<input placeholder="Строка загрузки" type="text" name="mov_link">
+								<input placeholder="Вставьте в это поле ссылку или часть кода для прикрепления видеоролика" type="text" name="mov_link">
+								
 								<div class="one_move">
 									<center>
 										<?=GetVideoContent($mov_link, $mov_link_type);?>
 									</center>
 								</div>
-								<textarea placeholder="Описание ролика (не более 200 знаков)"
+								<textarea placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
 									name="mov_description"></textarea>
-								<!-- <input placeholder="Загрузка обложки" type="text" name="mov_cover"> -->
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
 
 								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name">
 								<select name="mov_contest">
-									<option value="">Категория конкурса</option>
-									<option value="Удивительный теннис">Удивительный теннис</option>
-									<option value="Семейный теннис">Семейный теннис</option>
-									<option value="Теннисная прокачка">Теннисная прокачка</option>
-									<option value="Свой конкурс">Свой конкурс</option>
+									<?php
+									// Определяем список конкурсов в зависимости от текущей даты
+									if(GetContestPermission($date_now) == 1){
+										echo "<option value=''>Выберите категорию конкурса</option>";
+										echo "<option value='Удивительный теннис'>Удивительный теннис</option>";
+										echo "<option value='Семейный теннис'>Семейный теннис</option>";
+									}elseif(GetContestPermission($date_now) == 2){
+										echo "<option value=''>Выберите категорию конкурса</option>";
+										echo "<option value='Теннисная прокачка'>Теннисная прокачка</option>";
+										echo "<option value='Свой конкурс'>Свой конкурс</option>";	
+									}else{
+										echo "<option value=''>Выберите категорию конкурса</option>";
+										echo "<option value='Удивительный теннис'>Удивительный теннис</option>";
+										echo "<option value='Семейный теннис'>Семейный теннис</option>";
+										echo "<option value='Теннисная прокачка'>Теннисная прокачка</option>";
+										echo "<option value='Свой конкурс'>Свой конкурс</option>";
+									}
+									?>
 								</select>
 
 								<select name="mov_age_cat">
-									<option value="">Возрастная категория</option>
+									<option value="">Выберите возрастную категорию аудитории</option>
 									<option value="Любой">Любой</option>
 									<option value="до 8 лет">до 8 лет</option>
 									<option value="9-10 лет">9-10 лет</option>

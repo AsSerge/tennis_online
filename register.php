@@ -43,7 +43,7 @@
 										<input type="hidden" name="my_whwre" value="SUPER8">
 										
 										<p class="first">
-										Введите адрес электронной почты и пароль для регистрации в системе. Этот адрес будет использоваться в качестве логина при авторизации. После регистрации на указанный вами почтовый ящик будет отправлено письмо для активации вашей учетной записи. Для активации необходимо пройти по ссылке из письма. 
+										Введите адрес электронной почты и пароль для регистрации в системе. Этот <strong>адрес будет использоваться в качестве логина</strong> при авторизации. После регистрации на указанный вами почтовый ящик будет отправлено письмо для активации вашей учетной записи. Для активации необходимо пройти по ссылке из письма. 
 										</p>
 										<div class="dt-sc-hr-invisible-small"></div>
 										<p class="dt-sc-one-column column">
@@ -61,13 +61,17 @@
 												id="user_confirm_password" required>
 										</p>
 										<p id="pass_infotext"></p>
-										<input class="dt-sc-button small" value="Зарегистрироваться" type="submit"
+										<input class="dt-sc-button small" value="Зарегистрироваться*" type="submit"
 											id="register_form_submit">
+											<div class="dt-sc-hr-invisible-small"></div>
+											<p class="first">*Регистрируясь на сайте Вы принимаете <a href ="#" target="_blank">Правила участия</a> в конкурсах, проводимых Федерацией Тенниса России (ФТР) или уполномоченными организациями.</p>		
 									</form>
+									
 								</div>
 							</div>
 						</div>
 						<div class="dt-sc-hr-invisible-small"></div>
+						
 						<?php //include ('./layout/sp/subscript.php');?>
 						<!-- <div class="dt-sc-hr-invisible-large"></div> -->
 					</section>

@@ -16,7 +16,7 @@ function CheckMail ($db, $user_mail){
 	}
 }
 $set = $_POST['my_whwre'];
-$sender_mail = "info@mytennis.online";
+$sender_mail = "no-reply@mytennis.online";
 $sender_name = "Администратор";
 
 if($set =="SUPER8"){	
@@ -61,7 +61,7 @@ if($set =="SUPER8"){
 		SendMailGRMP($user_mail, $subject, $message, $sender_mail, $sender_name); // Отправляем почту
 
 		// Установливаем сессионную переменную
-		$_SESSION['info'] = "Ваш пароль воссановлен! На указанную Вами почту отправлена ссылка для активации учетной записи. Вы можете войти в систему после активации.";
+		$_SESSION['info'] = "Ваш пароль восстановлен!<br>На указанную Вами почту отправлена ссылка для активации учетной записи. Вы можете войти в систему после активации.";
 
 		// Возвращаемся на страницу
 		header("Location: ../entry.php"); exit();

@@ -4,7 +4,7 @@
 		<div class="top-bar">
 			<div class="container">
 				<div class="dt-sc-contact-info">
-					<p><i class="fa fa-phone"></i>Есть вопросы? Позвоните нам: <span><a href = 'tel:89151719291'>+7-915-171-9291</a></span></p>
+					<p><i class="fa fa-phone"></i>Есть вопросы? Напишите нам: <span><a href = 'mailto:info@mytennis.online'>info@mytennis.online</a></span></p>
 				</div>
 				<div class="top-right">
 					<ul>

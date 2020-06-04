@@ -2,29 +2,32 @@
 //Функция отправки почты через сервер grmp
 function SendMailGRMP($mail, $subject, $message, $sender_mail, $sender_name){
 	$__smtp = array(
-		"host" => 'mail.grmp.ru', // SMTP сервер
+
+		"host" => 'mail.hosting.reg.ru', // SMTP сервер
 		"debug" => 0, // Уровень логирования
 		"auth" => true, // Авторизация на сервере SMTP. Если ее нет - false
 		"port" => '465', // Порт SMTP сервера
-		"username" => 'm_help_shop', // Логин запрашиваемый при авторизации на SMTP сервере
+		"username" => 'no-reply@mytennis.online', // Логин запрашиваемый при авторизации на SMTP сервере
 		"usermail" => $sender_mail,  // Почта отправителя
-		"password" => 'Kkkesmdjn4', // Пароль
+		"password" => 'QWErty987!', // Пароль
 		"addreply" => $sender_mail, // Почта для ответа
 		"secure" => 'ssl', // Тип шифрования. Например ssl или tls
 		"mail_title" => 'Регистрацияя', // Заголовок письма
 		"mail_name" => $sender_name // Имя отправителя
 
-		// "host" => 'smtp.timeweb.ru', // SMTP сервер
+
+		// "host" => 'mail.grmp.ru', // SMTP сервер
 		// "debug" => 0, // Уровень логирования
 		// "auth" => true, // Авторизация на сервере SMTP. Если ее нет - false
 		// "port" => '465', // Порт SMTP сервера
-		// "username" => 'info@mytennis.online', // Логин запрашиваемый при авторизации на SMTP сервере
+		// "username" => 'm_help_shop', // Логин запрашиваемый при авторизации на SMTP сервере
 		// "usermail" => $sender_mail,  // Почта отправителя
-		// "password" => 'QWErty123@', // Пароль
+		// "password" => 'Kkkesmdjn4', // Пароль
 		// "addreply" => $sender_mail, // Почта для ответа
 		// "secure" => 'ssl', // Тип шифрования. Например ssl или tls
 		// "mail_title" => 'Регистрацияя', // Заголовок письма
 		// "mail_name" => $sender_name // Имя отправителя
+
 	);
 	require_once './PHPMailer/PHPMailerAutoload.php';
 	$SendAdress = array(
