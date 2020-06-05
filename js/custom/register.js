@@ -69,9 +69,7 @@ jQuery(window).load(function ($) {
 	});
 
 	$('.move_check span').on("click", function () {
-
 		var ch = $(this).find('input').prop('checked');
-
 		if (ch == true) {
 			$(this).find('input').prop('checked', false);
 			// $(this).find('label').css('font-weight', 'normal');
@@ -84,6 +82,9 @@ jQuery(window).load(function ($) {
 		}
 	});
 
+	$('#move_load').on("blur", function () {
+
+	});
 
 
 });

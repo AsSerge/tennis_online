@@ -53,5 +53,56 @@ function GetContestPermission ($date_now){
 	}
 }
 
+// Функция  формирования строки из чекбоксов
+function GetCheckBoxString ($string_arr, $seperator){
+	$str_out = "";
+	if(count($string_arr)>0){
+		foreach($string_arr as $str){
+			$str_out .= $str.$seperator; 
+		}
+	}
+	return rtrim($str_out, $seperator);
+}
+
+// Функция получения типа ссылки
+function GetVideoContentType ($mov_link){	
+	if(preg_match('/^https:\/\/vimeo.com\//', $mov_link)){
+		$mov['type'] = "vimeo";
+		$mov['short_link'] = str_replace("https://vimeo.com/", "", $mov_link);
+		return $mov;
+	}elseif(preg_match('/^https:\/\/www.instagram.com\/p\//' , $mov_link)){
+		$mov['type'] = "instagram";
+		preg_match('/^https:\/\/www.instagram.com\/p\/(\S+\b)(\/)/', $mov_link, $vlink_raw);
+			if($vlink_raw[2] == '/'){
+				$mov['short_link'] = $vlink_raw[1]; 
+			}else{
+				$mov['short_link'] = str_replace("https://www.instagram.com/p/", "", $mov_link);
+			}
+		return $mov;
+	}elseif(preg_match('/^https:\/\/youtu.be\//', $mov_link)){
+		$mov['type'] = "youtube";
+		$mov['short_link'] = str_replace("https://youtu.be/", "", $mov_link);
+		return $mov;
+	}elseif(preg_match('/^https:\/\/www.youtube.com\/watch\?v=/', $mov_link)){
+		$mov['type'] = "youtube";
+		$mov['short_link'] = str_replace("https://www.youtube.com/watch?v=", "", $mov_link);
+		return $mov;
+	}elseif(preg_match('/src="https:\/\/www.youtube.com\/embed\//', $mov_link)){
+		$mov['type'] = "youtube";
+		preg_match('/(\/embed\/)(\S+\b)/', $mov_link, $vlink_raw);
+		$mov['short_link'] = $vlink_raw[2];
+		return $mov;
+	}
+} 
+// Функция очистки сстроки
+function ClearPostString($string_to_clean){
+
+	$clear_string = trim($string_to_clean); // Пробелы
+	$clear_string = stripslashes($clear_string); // Экранирование
+	$clear_string = strip_tags($clear_string); // Теги
+	$clear_string = htmlspecialchars($clear_string); // HTML
+
+return $clear_string;	
+}
 
 ?>

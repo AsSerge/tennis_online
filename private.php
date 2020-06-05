@@ -44,7 +44,7 @@ include ('./login/line_check.php');
 								<div class="dt-sc-hr-invisible-small"></div>
 								<div class="dt-sc-one-half column first">
 									<div class="dt-excersise-thumb">
-										<iframe src="http://player.vimeo.com/video/106579765" height="250"></iframe>
+										<iframe src="https://player.vimeo.com/video/106579765" height="250"></iframe>
 									</div>
 								</div>
 								<div class="dt-sc-one-half column">
@@ -69,16 +69,16 @@ include ('./login/line_check.php');
 							<h3 class="border-title"> <span> Просмотренные ролики </span></h3>
 							<div class="portfolio-single-slider-wrapper">
 								<ul class="portfolio-single-slider">
-									<li> <iframe src="http://player.vimeo.com/video/106579765" height="150"></iframe> </li>
+									<li> <iframe src="https://player.vimeo.com/video/106579765" height="150"></iframe> </li>
 									<li> <iframe src="https://player.vimeo.com/video/218734869" height="150"></iframe> </li>
-									<li> <iframe src="http://player.vimeo.com/video/106579765" height="150"></iframe> </li>
+									<li> <iframe src="https://player.vimeo.com/video/106579765" height="150"></iframe> </li>
 									<li> <iframe src="https://player.vimeo.com/video/218734869" height="150"></iframe> </li>
 								</ul>
 								<div id="bx-pager">
-								  <a data-slide-index="0" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
-								  <a data-slide-index="1" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
-								  <a data-slide-index="2" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
-								  <a data-slide-index="3" href=""> <img src="http://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
+								  <a data-slide-index="0" href=""> <img src="https://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
+								  <a data-slide-index="1" href=""> <img src="https://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
+								  <a data-slide-index="2" href=""> <img src="https://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
+								  <a data-slide-index="3" href=""> <img src="https://placehold.it/1170x800&text=Gallery" alt="" title=""> </a>
 								</div>
 								<div class="dt-sc-hr-invisible"></div>
 								<div class="pagination">

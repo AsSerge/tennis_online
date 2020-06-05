@@ -1,4 +1,8 @@
 <?php
+
+// Вход с социальных сетей
+	require_once($_SERVER['DOCUMENT_ROOT'].'/auth/via.php');
+
 session_start();
 // Страница авторизации
 include($_SERVER['DOCUMENT_ROOT'].'/login/log_to_base.php');

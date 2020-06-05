@@ -51,8 +51,8 @@ if($set =="SUPER8"){
 		$message = "Добрый день!<br>";
 		$message .= "Ваш пароль восстановлен<br>";
 		$message = "Для активации вашей учетной записи вам необходимо пройти по ссылке:<br>";
-		$message .= "<a href='http://{$_SERVER['HTTP_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}'>";
-		$message .= "http://{$_SERVER['HTTP_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}";
+		$message .= "<a href='https://{$_SERVER['HTTP_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}'>";
+		$message .= "https://{$_SERVER['HTTP_HOST']}/login/registration_confirmation.php?user_id={$user_id}&mail_confirm={$mail_confirm}";
 		$message .= "</a><br>";
 
 		$message .= "==============================================<br>";

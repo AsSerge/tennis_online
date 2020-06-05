@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Май 31 2020 г., 20:34
--- Версия сервера: 10.3.22-MariaDB
--- Версия PHP: 7.1.33
+-- Хост: localhost
+-- Время создания: Июн 05 2020 г., 12:42
+-- Версия сервера: 5.7.23-24
+-- Версия PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `ten_base`
+-- База данных: `u1068761_default`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `movie` (
   `mov_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `mov_added` date NOT NULL,
-  `mov_last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  `mov_last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mov_link_type` varchar(128) NOT NULL,
   `mov_link` varchar(1024) NOT NULL,
   `mov_name` varchar(512) NOT NULL,

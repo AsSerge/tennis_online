@@ -24,35 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `movie_comments`
+-- Структура таблицы `matches`
 --
 
-CREATE TABLE `movie_comments` (
-  `com_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `com_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `com_text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `matches` (
+  `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
+  `name` varchar(255) NOT NULL COMMENT 'Название конкурса',
+  `begin_date` date NOT NULL COMMENT 'Дата начала',
+  `end_date` date NOT NULL COMMENT 'Дата окончания'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица конкурсов';
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
--- Индексы таблицы `movie_comments`
+-- Индексы таблицы `matches`
 --
-ALTER TABLE `movie_comments`
-  ADD PRIMARY KEY (`com_id`);
+ALTER TABLE `matches`
+  ADD PRIMARY KEY (`match_id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT для таблицы `movie_comments`
+-- AUTO_INCREMENT для таблицы `matches`
 --
-ALTER TABLE `movie_comments`
-  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `matches`
+  MODIFY `match_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID конкурса';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

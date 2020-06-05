@@ -70,7 +70,7 @@ include ('./layout/site_function.php');
 								//			https://youtu.be/gPehzeW22fY
 								// 			https://www.youtube.com/watch?v=gPehzeW22fY
 
-
+									
 								function GetVideoContent ($mov_link, $mov_link_type){
 									switch ($mov_link_type){
 										case "vimeo":
@@ -118,9 +118,9 @@ include ('./layout/site_function.php');
 									}
 									return  $video_frame_content;
 
-								}								
+								}
 								?>
-								<input placeholder="Вставьте в это поле ссылку или часть кода для прикрепления видеоролика" type="text" name="mov_link">
+								<input placeholder="Вставьте в это поле ссылку или часть кода для прикрепления видеоролика" type="text" name="mov_link" id = "move_load" required>
 								
 								<div class="one_move">
 									<center>
@@ -133,8 +133,8 @@ include ('./layout/site_function.php');
 
 							<div class="dt-sc-three-sixth column last">
 
-								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name">
-								<select name="mov_contest">
+								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name" required>
+								<select name="mov_contest" required>
 									<?php
 									// Определяем список конкурсов в зависимости от текущей даты
 									if(GetContestPermission($date_now) == 1){
@@ -155,7 +155,7 @@ include ('./layout/site_function.php');
 									?>
 								</select>
 
-								<select name="mov_age_cat">
+								<select name="mov_age_cat" required>
 									<option value="">Выберите возрастную категорию аудитории</option>
 									<option value="Любой">Любой</option>
 									<option value="до 8 лет">до 8 лет</option>
@@ -198,7 +198,7 @@ include ('./layout/site_function.php');
 											echo "<span>";
 											// echo "<input type='checkbox' id='kap{$k}' name='kap{$k}' value='yes'>";
 											// echo "<label for='kap{$k}'>{$contest}</label>";
-											echo "<input type='checkbox' id='tags{$k}' name='tags[]' value='{$contest}'>";
+											echo "<input type='checkbox' id='tags{$k}' name='mov_tags[]' value='{$contest}'>";
 											echo "<label for='tags'>{$contest}</label>";
 											echo "</span>";
 										$k++;	
@@ -217,7 +217,7 @@ include ('./layout/site_function.php');
 										$k=0;
 										foreach($mov_equipment_arr as $equipment){
 											echo "<span>";
-											echo "<input type='checkbox' id='equipment{$k}' name='equipment[]' value='{$equipment}'>";
+											echo "<input type='checkbox' id='equipment{$k}' name='mov_equipment[]' value='{$equipment}'>";
 											echo "<label for='equipment{$k}'>{$equipment}</label>";
 											echo "</span>";
 										$k++;	
@@ -225,8 +225,6 @@ include ('./layout/site_function.php');
 										?>
 									</div>
 								</aside>
-
-
 							</div>
 							<div style="text-align: center;">
 								<input type="submit" class="dt-sc-button small" data-hover="Новый ролик"
