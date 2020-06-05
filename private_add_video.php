@@ -52,80 +52,10 @@ include ('./layout/site_function.php');
 										border-color: white !important;
 									}
 								</style>
-								<?php
-								
-								// Получаем и готовим линк
-								// $mov_link = "https://vimeo.com/77270461";
-								// $mov_link = "https://www.instagram.com/p/CAIm3SDn54v";
-								$mov_link = '<iframe width="560" height="315" src="https://www.youtube.com/embed/gPehzeW22fY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-								// Получаем тип ссылки
-								// $mov_link_type = "vimeo";
-								// $mov_link_type = "instagram";
-								$mov_link_type = "youtube";
-								// Функция GetVideoContent (ссылка на ролик, тип ролика) Для YouTube В зависимости от вида ссылки, вынимает код ролика
-								// Принимаются ссылки следующего вида:
-								// vimeo:	https://vimeo.com/77270461
-								// instagramm: https://www.instagram.com/p/CAIm3SDn54v
-								// youtube:	<iframe>...</iframe>
-								//			https://youtu.be/gPehzeW22fY
-								// 			https://www.youtube.com/watch?v=gPehzeW22fY
-
-									
-								function GetVideoContent ($mov_link, $mov_link_type){
-									switch ($mov_link_type){
-										case "vimeo":
-											$video_link = str_replace("https://vimeo.com/", "", $mov_link);
-											$video_frame_content = "
-											<iframe src='https://player.vimeo.com/video/{$video_link}' width='640'
-												height='360' frameborder='0' allow='autoplay; fullscreen'
-												allowfullscreen></iframe>";
-											break;
-										case "instagram":
-											preg_match('/^https:\/\/www.instagram.com\/p\/(\S+\b)(\/)/', $mov_link, $vlink_raw);
-											if($vlink_raw[2] == '/'){
-												$video_link = $vlink_raw[1]; 
-											}else{
-												$video_link = str_replace("https://www.instagram.com/p/", "", $mov_link);
-											}
-											$video_frame_content = "
-											<blockquote class='instagram-media' data-instgrm-version='7'>
-											<a href='https://www.instagram.com/p/{$video_link}/media/?size=s'></a>
-											</blockquote>
-											<script async defer src='//platform.instagram.com/en_US/embeds.js'></script>";
-											break;
-										case "youtube":
-											// Определение типа YouTube ссылки
-											if(preg_match('/^https:\/\/youtu.be\//', $mov_link)){
-												$video_link = str_replace("https://youtu.be/", "", $mov_link);
-											}elseif (preg_match('/^https:\/\/www.youtube.com\/watch\?v=/', $mov_link)) {
-												$video_link = str_replace("https://www.youtube.com/watch?v=", "", $mov_link);
-											}elseif(preg_match('/src="https:\/\/www.youtube.com\/embed\//', $mov_link)){
-												preg_match('/(\/embed\/)(\S+\b)/', $mov_link, $vlink_raw);
-												$video_link = $vlink_raw[2];}
-											$video_frame_content = "
-											<iframe width='100%' height='350px'src='https://www.youtube.com/embed/{$video_link}' 
-												frameborder='0' 
-												allow='accelerometer; 
-												autoplay; 
-												encrypted-media; 
-												gyroscope; 
-												picture-in-picture' 
-												allowfullscreen>
-												</iframe>";
-											break;
-										default:
-											echo "Видео не загружено";
-									}
-									return  $video_frame_content;
-
-								}
-								?>
+	
 								<input placeholder="Вставьте в это поле ссылку или часть кода для прикрепления видеоролика" type="text" name="mov_link" id = "move_load" required>
-								
+								<div id = "move_alert_info"></div>
 								<div class="one_move">
-									<center>
-										<?=GetVideoContent($mov_link, $mov_link_type);?>
-									</center>
 								</div>
 								<textarea placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
 									name="mov_description"></textarea>
@@ -228,7 +158,7 @@ include ('./layout/site_function.php');
 							</div>
 							<div style="text-align: center;">
 								<input type="submit" class="dt-sc-button small" data-hover="Новый ролик"
-									value="Отправить на конкурс">
+									value="Отправить на конкурс" id = "send_move_btn">
 								<!-- <a href="private_add_video.php" class="dt-sc-button small" 
 									data-hover="Новый ролик">Отправить на конкурс</a> -->
 							</div>
