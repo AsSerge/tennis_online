@@ -61,64 +61,94 @@ if(isset($_POST['submit']))
 	</div>
 </div>
 <!-- Loader ends here -->
-	<!-- **Wrapper** -->
-	<div class="wrapper">
-		<div class="inner-wrapper">
-			<!-- header-wrapper starts here -->
-			<?php include ('./layout/header.php');?>
-			<!-- header-wrapper end here -->
-			<!-- breadcrumb starts here -->
-			<div class="breadcrumb-wrapper">
-				<div class="container">
-					<h1>Личный кабинет</h1>
-					<div class="breadcrumb">
-						<a href="/">Личный кабинет</a>
-						<span class="default"> </span>
-						<h4>Вход в личный кабинет</h4>
-					</div>
+<!-- **Wrapper** -->
+<div class="wrapper">
+	<div class="inner-wrapper">
+		<!-- header-wrapper starts here -->
+		<?php include ('./layout/header.php');?>
+		<!-- header-wrapper end here -->
+		<!-- breadcrumb starts here -->
+		<div class="breadcrumb-wrapper">
+			<div class="container">
+				<h1>Личный кабинет</h1>
+				<div class="breadcrumb">
+					<a href="/">Личный кабинет</a>
+					<span class="default"> </span>
+					<h4>Вход в личный кабинет</h4>
 				</div>
 			</div>
-			<!-- breadcrumb ends here -->
-			<div id="main">
-				<!-- main-content starts here -->
-				<div id="main-content">
-					<section id="primary" class="content-full-width">
-						<div class="fullwidth-section dt-sc-paralax full-pattern6">
-							<div class="container">
+		</div>
+		<!-- breadcrumb ends here -->
+		<div id="main">
+			<!-- main-content starts here -->
+			<div id="main-content">
+				<section id="primary" class="content-full-width">
+					<div class="fullwidth-section dt-sc-paralax full-pattern6">
+						<div class="container">
 							<div style="text-align: center; color: red;">
-							<?php
+								<?php
 							echo $_SESSION['info'];
 							$_SESSION['info'] = '';
 							?>
 							</div>
-								<div class="form-wrapper register">
-									<form method="POST" id="reg_form" name="frmEntry" role="form">
-											<p>
-												<input name="login" type="text" class="form-control" placeholder="Логин (e-mail, введенный вами при регистрации)" required autofocus>
-											</p>
-											<p>
-												<input placeholder="Пароль" type="password" id="user_password" name="password">
-											</p>
-											<p id="pass_infotext"></p>
-											<?=$error_message;?>
-											<!-- <button class="dt-sc-button small" name="submit" type="submit">Отправить</button> -->
-											<input class="dt-sc-button small" value="Войти" type="submit" name="submit">
-											<div class="dt-sc-hr-invisible-small"></div>
-											<p><a href = "register.php" title="Новая регистрация в системе">Зарегистрироваться в системе</a>
-											&nbsp;/&nbsp;<a href = "password_recovery.php" title="Ссылка для восстановления пароля будет выслана на указанную при регистрации почту">Я забыл пароль</a>
-											</p>
-									</form>
-								</div>
+							<div class="form-wrapper register">
+								<form method="POST" id="reg_form" name="frmEntry" role="form">
+									<p>
+										<input name="login" type="text" class="form-control"
+											placeholder="Логин (e-mail, введенный вами при регистрации)" required
+											autofocus>
+									</p>
+									<p>
+										<input placeholder="Пароль" type="password" id="user_password" name="password">
+									</p>
+									<p id="pass_infotext"></p>
+									<?=$error_message;?>
+									<!-- <button class="dt-sc-button small" name="submit" type="submit">Отправить</button> -->
+									<input class="dt-sc-button small" value="Войти" type="submit" name="submit">
+									<div class="dt-sc-hr-invisible-small"></div>
+									<p><a href="register.php" title="Новая регистрация в системе">Зарегистрироваться в
+											системе</a>
+										&nbsp;/&nbsp;<a href="password_recovery.php"
+											title="Ссылка для восстановления пароля будет выслана на указанную при регистрации почту">Я
+											забыл пароль</a>
+									</p>
+									<p>
+										Вход через социальные сети:<br />
+
+										<style>
+											.one_smm {
+												margin: 4px;
+											}
+
+											.one_smm:HOVER {
+												opacity: 0.7;
+											}
+										</style>
+										<?php
+										$smm_link['VKontakte'] = ['vk', 'vk_entry.svg'];
+										$smm_link['Ok'] = ['ok', 'ok_entry.svg'];
+										$smm_link['Facebook'] = ['facebook', 'fb_entry.svg'];
+										$smm_link['Google'] = ['google', 'gl_entry.svg'];
+										$smm_link['Yandex'] = ['ya', 'ya_entry.svg'];
+										$smm_link['Mail.ru'] = ['mailru', 'ml_entry.svg'];
+										// $smm_link['Instagramm'] = ['inst', 'is_entry.svg'];
+										foreach($smm_link as $key => $adr){
+											echo "<a href='https://mytennis.online/entry.php?via={$adr[0]}' class='one_smm'><img src='/images/logo/{$adr[1]}' alt='{$key}' title='{$key}' width='30px'></a>";
+										}
+										?>
+									</p>
+								</form>
 							</div>
 						</div>
-						<div class="dt-sc-hr-invisible-small"></div>
-					</section>
-				</div>
-				<!-- main-content ends here -->
+					</div>
+					<div class="dt-sc-hr-invisible-small"></div>
+				</section>
 			</div>
-			<!-- footer starts here -->
-			<?php include ('./layout/footer.php');?>
-			<!-- footer ends here -->
+			<!-- main-content ends here -->
+		</div>
+		<!-- footer starts here -->
+		<?php include ('./layout/footer.php');?>
+		<!-- footer ends here -->
 	</div><!-- **Inner Wrapper - End** -->
 </div><!-- **Wrapper - End** -->
 <?php include('./layout/site_foot.php');?>
