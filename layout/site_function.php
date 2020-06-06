@@ -92,6 +92,23 @@ function GetVideoContentType ($mov_link){
 		preg_match('/(\/embed\/)(\S+\b)/', $mov_link, $vlink_raw);
 		$mov['short_link'] = $vlink_raw[2];
 		return $mov;
+	}elseif(preg_match('/^https:\/\/ok.ru\/video\//', $mov_link)){
+		$mov['type'] = "ok";
+		$mov['short_link'] = str_replace("https://ok.ru/video", "", $mov_link);
+		return $mov;
+	}elseif(preg_match('/^https:\/\/www.facebook.com\/\S+\b\/videos/', $mov_link)){
+		$mov['type'] = "facebook";
+		preg_match('/^https:\/\/www.facebook.com\/(\S+\b)\/videos\/(\S+\b)\//',$mov_link, $vlink_raw);
+		$mov['short_link'] = $vlink_raw[1]."/".$vlink_raw[2];
+		return $mov;
+	}elseif(preg_match('/^https:\/\/ok.ru\/video\//', $mov_link)){
+		$mov['type'] = "ok";
+		$mov['short_link'] = str_replace("https://ok.ru/video/", "", $mov_link);
+		return $mov;
+	}elseif(preg_match('/^<iframe src="\/\/vk.com\/video_ext.php/', $mov_link)){
+		$mov['type'] = "vk";
+		$mov['short_link'] = $mov_link;
+		return $mov;
 	}
 } 
 // Функция очистки сстроки

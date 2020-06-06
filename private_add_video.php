@@ -58,7 +58,7 @@ include ('./layout/site_function.php');
 								<div class="one_move">
 								</div>
 								<textarea placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
-									name="mov_description"></textarea>
+									name="mov_description" id = "mov_description"></textarea>
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
@@ -110,8 +110,8 @@ include ('./layout/site_function.php');
 
 									.move_check label {
 										padding: 8px;
-										color: #FFF;
-										background-color: #179ed6;
+										color: #FFF;										
+										background-color: #b4b4b4;
 										cursor: pointer;
 									}
 								</style>
@@ -159,8 +159,6 @@ include ('./layout/site_function.php');
 							<div style="text-align: center;">
 								<input type="submit" class="dt-sc-button small" data-hover="Новый ролик"
 									value="Отправить на конкурс" id = "send_move_btn">
-								<!-- <a href="private_add_video.php" class="dt-sc-button small" 
-									data-hover="Новый ролик">Отправить на конкурс</a> -->
 							</div>
 							<div class="dt-sc-hr-invisible-small"></div>
 						</form>

@@ -54,8 +54,36 @@ switch ($mov['type']){
 			allowfullscreen>
 			</iframe>";
 		break;
+	case "facebook":
+		preg_match('/^https:\/\/www.facebook.com\/(\S+\b)\/videos\/(\S+\b)\//',$mov_link, $vlink_raw);
+		$video_frame_content = "
+		<iframe src='https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{$vlink_raw[1]}%2Fvideos%2F{$vlink_raw[2]}%2F&show_text=0&width=560' 
+			width='560'
+			height='315'
+			style='border:none;overflow:hidden'
+			scrolling='no'
+			frameborder='0'
+			allowTransparency='true'
+			allowFullScreen='true'>
+			</iframe>";
+		break;
+	case "ok":
+		$video_link = str_replace("https://ok.ru/video/", "", $mov_link);
+		$video_frame_content = "
+		<iframe width='560' height='315'
+		src='//ok.ru/videoembed/{$video_link}'
+		frameborder='0'
+		allow='autoplay'
+		allowfullscreen>
+		</iframe>
+		";
+		break;
+	case "vk":
+		$video_link = $mov_link;
+		$video_frame_content = $video_link;
+		break;
 	default:
-		echo "Видео не загружено";
+		echo "Видео не загружено".$mov['type'];
 }
 // Выводим плэйен в окно
 echo $video_frame_content;
