@@ -109,6 +109,10 @@ function GetVideoContentType ($mov_link){
 		$mov['type'] = "vk";
 		$mov['short_link'] = $mov_link;
 		return $mov;
+	}elseif(preg_match('/^<blockquote class="twitter-tweet">/', $mov_link)){
+		$mov['type'] = "twitter";
+		$mov['short_link'] = $mov_link;
+		return $mov;
 	}
 } 
 // Функция очистки сстроки

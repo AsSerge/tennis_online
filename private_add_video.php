@@ -38,6 +38,7 @@ include ('./layout/site_function.php');
 						<h3 class="border-title"> <span> Добавление ролика </span></h3>
 
 						<form method="POST" action="./login/move_save_exe.php">
+							<input type="hidden" name="user_id" value="<?=$user_id?>">
 							<div class="dt-sc-three-sixth column first">
 								<style>
 									.one_move {
@@ -48,22 +49,28 @@ include ('./layout/site_function.php');
 										border: 1px solid rgb(223, 223, 223);
 										margin-bottom: 40px;
 									}
+
 									.instagram-media {
 										border-color: white !important;
 									}
 								</style>
-	
-								<input placeholder="Вставьте в это поле ссылку или часть кода для прикрепления видеоролика" type="text" name="mov_link" id = "move_load" required>
-								<div id = "move_alert_info"></div>
+
+								<input
+									placeholder="Вставьте в это поле ссылку или часть кода для прикрепления видеоролика"
+									type="text" name="mov_link" id="move_load" required>
+								<div id="move_alert_info"></div>
 								<div class="one_move">
+
 								</div>
-								<textarea placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
-									name="mov_description" id = "mov_description"></textarea>
+								<textarea
+									placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
+									name="mov_description" id="mov_description"></textarea>
 							</div>
 
 							<div class="dt-sc-three-sixth column last">
 
-								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name" required>
+								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name"
+									required>
 								<select name="mov_contest" required>
 									<?php
 									// Определяем список конкурсов в зависимости от текущей даты
@@ -110,7 +117,7 @@ include ('./layout/site_function.php');
 
 									.move_check label {
 										padding: 8px;
-										color: #FFF;										
+										color: #FFF;
 										background-color: #b4b4b4;
 										cursor: pointer;
 									}
@@ -158,7 +165,7 @@ include ('./layout/site_function.php');
 							</div>
 							<div style="text-align: center;">
 								<input type="submit" class="dt-sc-button small" data-hover="Новый ролик"
-									value="Отправить на конкурс" id = "send_move_btn">
+									value="Отправить на конкурс" id="send_move_btn">
 							</div>
 							<div class="dt-sc-hr-invisible-small"></div>
 						</form>

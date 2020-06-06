@@ -82,9 +82,14 @@ switch ($mov['type']){
 		$video_link = $mov_link;
 		$video_frame_content = $video_link;
 		break;
+	case "twitter":
+			$video_link = $mov_link;
+			$video_frame_content = $video_link;
+		break;	
 	default:
 		echo "Видео не загружено".$mov['type'];
 }
 // Выводим плэйен в окно
 echo $video_frame_content;
+
 ?>

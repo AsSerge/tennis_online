@@ -140,6 +140,8 @@ function GetVideoContentType(long_link) {
 		return true;
 	} else if (/^<iframe src="\/\/vk.com\/video_ext.php/.exec(long_link)) {
 		return true;
+	} else if (/^<blockquote class="twitter-tweet">/.exec(long_link)) {
+		return true;
 	} else {
 		return false;
 	}
