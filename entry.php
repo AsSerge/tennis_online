@@ -1,7 +1,7 @@
 <?php
 
 // Вход с социальных сетей
-	require_once($_SERVER['DOCUMENT_ROOT'].'/auth/via.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/auth/via.php');
 
 session_start();
 // Страница авторизации

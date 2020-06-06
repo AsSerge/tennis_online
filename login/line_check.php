@@ -19,7 +19,7 @@ if (
 	or !isset($_COOKIE['hash'])
 	or ($userdata['user_hash'] !== $_COOKIE['hash'])
 	or ($userdata['user_id'] !== $_COOKIE['id'])
-	or ($userdata['user_status'] !== "true")	
+	or ($userdata['user_status'] == 0)	
    ){
 	header("Location: ../entry.php"); exit();
 }

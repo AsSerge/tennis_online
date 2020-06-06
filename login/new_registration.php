@@ -25,17 +25,20 @@ if($set =="SUPER8"){
 	$user_login = $user_mail;
 	$user_password = md5(md5(trim($_POST['user_password']))); // Двойное кодирование на всякий случай
 	$mail_confirm = md5(md5($user_login)); // Формируем хеш для подтверждения почтового адреса
+	$user_status = 0; // Отключаем учетную запись при первоначальной регистрации
 	// Проверяем, существует ли почта в базе, и если нет - начинаем подлив
+	
 	//! Здесь необходимо сделать еще одну проверку
 
 	if(CheckMail($db, $user_mail)){
 
-		$sql = "INSERT INTO users (user_login, user_mail, user_password, mail_confirm) VALUES (?, ?, ?, ?)"; // Плейсхолдер запроса
+		$sql = "INSERT INTO users (user_login, user_mail, user_password, mail_confirm, user_status) VALUES (?, ?, ?, ?, ?)"; // Плейсхолдер запроса
 		$stmt = $db->prepare($sql); // Готовим запрос
 		$stmt->bindParam(1, $user_login);
 		$stmt->bindParam(2, $user_mail);
 		$stmt->bindParam(3, $user_password);
 		$stmt->bindParam(4, $mail_confirm);
+		$stmt->bindParam(5, $user_status);
 		// Исполняем запрос
 		$stmt->execute();
 		// Получаем ID последней записи

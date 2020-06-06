@@ -14,7 +14,7 @@ if(isset($_GET['user_id']) and isset($_GET['mail_confirm'])){
 
 	// Включаем пользователя
 	if($userdata[0] === '1'){
-		$query = "UPDATE users SET user_status = 'true' WHERE user_id = ?";
+		$query = "UPDATE users SET user_status = 1 WHERE user_id = ?";
 		$my_data = $db->prepare($query);
 		$my_data->execute([$user_id]);
 		header("Location: ../private.php"); exit();

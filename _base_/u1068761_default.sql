@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost
--- Время создания: Июн 05 2020 г., 12:43
--- Версия сервера: 5.7.23-24
--- Версия PHP: 7.1.32
+-- Хост: 127.0.0.1:3306
+-- Время создания: Июн 06 2020 г., 22:01
+-- Версия сервера: 10.3.22-MariaDB
+-- Версия PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,147 @@ SET time_zone = "+00:00";
 --
 -- База данных: `u1068761_default`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `matches`
+--
+
+CREATE TABLE `matches` (
+  `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
+  `name` varchar(255) NOT NULL COMMENT 'Название конкурса',
+  `begin_date` date NOT NULL COMMENT 'Дата начала',
+  `end_date` date NOT NULL COMMENT 'Дата окончания'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица конкурсов';
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `movie`
+--
+
+CREATE TABLE `movie` (
+  `mov_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `match_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID конкурса, в котором участвует видеоролик',
+  `mov_added` date NOT NULL,
+  `mov_last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  `mov_link_type` varchar(128) NOT NULL,
+  `mov_link` varchar(1024) NOT NULL,
+  `mov_name` varchar(512) NOT NULL,
+  `mov_description` text NOT NULL,
+  `mov_age_cat` varchar(128) NOT NULL,
+  `mov_status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - блокировка, 1 - ждет подтверждения, 2 - опубликован ',
+  `mov_rank` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `movie`
+--
+
+INSERT INTO `movie` (`mov_id`, `user_id`, `match_id`, `mov_added`, `mov_last_update`, `mov_link_type`, `mov_link`, `mov_name`, `mov_description`, `mov_age_cat`, `mov_status`, `mov_rank`) VALUES
+(1, 70, 3, '2020-06-06', '2020-06-06 18:27:58', 'youtube', 'https://youtu.be/CdW9D7hhj0Y', 'Australian Open 2018', 'Australian Open 2018 / 3-й Круг / Анжелик Кербер (Германия) – Мария Шарапова (Россия)', 'Любой', 1, 0),
+(2, 70, 3, '2020-06-06', '2020-06-06 18:29:28', 'youtube', 'https://youtu.be/K_7wBxg4aPs', 'Современный удар справа', 'Современный удар справа. Modern tennis forehand.\r\nУдар справа — один из основных ударов в теннисе, и что самое интересное — с него начинается все обучение.', 'до 15 лет', 1, 0),
+(4, 70, 3, '2020-06-06', '2020-06-06 18:51:28', 'vimeo', 'https://vimeo.com/325650740', 'Eurosport | Home of Tennis', 'DixonBaxi partner with Eurosport to create the ‘Home of Tennis’ with a kinetic identity capturing the sensation of playing across multiple surfaces.', 'Любой', 1, 0),
+(5, 70, 1, '2020-06-06', '2020-06-06 18:54:04', 'ok', 'https://ok.ru/video/2612135213', 'Это название ролика', 'Подача один из самых важных элементов игры в теннисе, Начинать разучивать базовую технику Крученой  подачи целесообразно держа ракетку', 'Любой', 1, 0),
+(6, 70, 1, '2020-06-06', '2020-06-06 19:00:00', 'vk', '<iframe src=\"//vk.com/video_ext.php?oid=136507481&id=456239019&hash=ea5a501d2274f498&hd=2\" width=\"853\" height=\"480\" frameborder=\"0\" allowfullscreen></iframe>', 'Покатушки', 'Покатушки', 'Любой', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `movie_comments`
+--
+
+CREATE TABLE `movie_comments` (
+  `com_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `com_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `com_text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `movie_tags`
+--
+
+CREATE TABLE `movie_tags` (
+  `mov_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
+  `tag_id` int(10) UNSIGNED NOT NULL COMMENT 'ID тега'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Теги видеороликов';
+
+--
+-- Дамп данных таблицы `movie_tags`
+--
+
+INSERT INTO `movie_tags` (`mov_id`, `tag_id`) VALUES
+(1, 1),
+(1, 3),
+(1, 6),
+(1, 7),
+(1, 16),
+(1, 17),
+(1, 20),
+(1, 23),
+(2, 1),
+(2, 6),
+(2, 7),
+(2, 11),
+(2, 14),
+(2, 17),
+(2, 20),
+(2, 23),
+(4, 1),
+(4, 3),
+(4, 6),
+(4, 14),
+(4, 16),
+(4, 17),
+(4, 20),
+(5, 6),
+(5, 20),
+(6, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `rates_jury`
+--
+
+CREATE TABLE `rates_jury` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT 'UID записи',
+  `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
+  `movie_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
+  `movie_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID пользователя - создателя ролика',
+  `reff_id` int(10) UNSIGNED NOT NULL COMMENT 'ID голосующего члена жюри',
+  `rate_unique` int(10) UNSIGNED NOT NULL COMMENT 'Уникальность (Критерий голосования)',
+  `rate_humor` int(10) UNSIGNED NOT NULL COMMENT 'Юмор (Критерий голосования)',
+  `rate_competition` int(10) UNSIGNED NOT NULL COMMENT 'Состязательность (Критерий голосования)',
+  `rate_hardness` int(10) UNSIGNED NOT NULL COMMENT 'Сложность (Критерий голосования)',
+  `rate_usefulness` int(10) UNSIGNED NOT NULL COMMENT 'Полезность (Критерий голосования)',
+  `myprize_status` int(10) UNSIGNED NOT NULL COMMENT 'Признак Голосования <Мой приз>: 0 - ничего; 1 - отмечен как номинант; 2 - выбран как победитель',
+  `myprize_data` char(32) NOT NULL COMMENT 'Дополнительные данные, по которым можно идентифицировать приз члена жюри (числовой или текстовый идентификатор)',
+  `rate_ip` char(15) NOT NULL COMMENT 'IP адрес с которого было голосование',
+  `rate_ts` datetime NOT NULL COMMENT 'Дата и время голосования'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица голосований членов жюри';
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `rates_users`
+--
+
+CREATE TABLE `rates_users` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT 'UID записи',
+  `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
+  `movie_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
+  `movie_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID пользователя - создателя ролика',
+  `rate_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID голосующего пользователя',
+  `rate_value` int(10) UNSIGNED NOT NULL COMMENT 'Выставленная голосующим пользователем оценка',
+  `rate_ip` char(15) NOT NULL COMMENT 'IP адрес с которого было голосование',
+  `rate_ts` datetime NOT NULL COMMENT 'Дата и время голосования'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица голосований пользователей';
 
 -- --------------------------------------------------------
 
@@ -85,9 +226,140 @@ INSERT INTO `refferies` (`reff_id`, `reff_name`, `reff_surname`, `reff_patronymi
 (9, 'Динара', 'Сафина', 'Мубиновна', '1986-04-27', 'Завершила карьеру', '', '', 'dinara_safina', 16, 12, '360/173', '181/91', '', '', '-', '-', 1, '2009-04-20', 8, '2008-05-12', 'Олимпийские игры (2008); Sopot (2002); Palermo (2003); Beijing (2004); Hertogenbosch (2005); Paris (2005); Antwerp (2006); Gold Coast (2006); US Open (2007); Gold Coast (2007); Gold Coast(2008); Indian Wells (2008); Tokyo (2008); Montréal (2008); Los Angeles (2008); Berlin (2008); Portoroz (2009); Madrid (2009); Rome (2009); Kuala Lumpur (2011)', 8, '2000', 10585640, 182, 70, '', '', '', '', '', '', 'https://ru.wikipedia.org/wiki/%D0%A1%D0%B0%D1%84%D0%B8%D0%BD%D0%B0,_%D0%94%D0%B8%D0%BD%D0%B0%D1%80%D0%B0_%D0%9C%D1%83%D0%B1%D0%B8%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0', '', '', '', '', ''),
 (10, 'Мария', 'Кириленко', 'Юрьевна', '1987-01-25', 'Завершила карьеру', '', '', 'maria_kirilenko', 9, 12, '364/257', '255/150', '', '', '-', '-', 10, '2013-06-10', 5, '2011-10-24', 'Олимпийские Игры (2012); Birmingham (2004); Tokyo (2005); Beijing (2005); Doha (2007); Kolkata (2007); Cincinnati (2008); Oeiras (2008); Barcelona (2008); Seoul (2008); Кубок Кремля (2009); Cincinnati (2010); San Diego (2010); Stanford (2011); Madrid (2011); Miami (2012); Pattaya City (2013)', 7, '2001', 6855919, 174, 61, '', '', '', '', '', '', 'https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D1%80%D0%B8%D0%BB%D0%B5%D0%BD%D0%BA%D0%BE,_%D0%9C%D0%B0%D1%80%D0%B8%D1%8F_%D0%AE%D1%80%D1%8C%D0%B5%D0%B2%D0%BD%D0%B0', '', '', '', '', '');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tags`
+--
+
+CREATE TABLE `tags` (
+  `tag_id` int(10) UNSIGNED NOT NULL COMMENT 'ID тега',
+  `tag` char(32) NOT NULL COMMENT 'Собственно сам тег',
+  `group_id` int(10) UNSIGNED NOT NULL COMMENT 'Признак объединения тегов в группы. 0- без группы, 1 - снаряжение, 2 -... и т.д.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Справочник тегов';
+
+--
+-- Дамп данных таблицы `tags`
+--
+
+INSERT INTO `tags` (`tag_id`, `tag`, `group_id`) VALUES
+(1, 'Скорость', 1),
+(2, 'Сила', 1),
+(3, 'Выносливость', 1),
+(4, 'Координация', 1),
+(5, 'Концентрация', 1),
+(6, 'Точность', 1),
+(7, 'Гибкость', 1),
+(8, 'Кардио', 1),
+(9, 'Скакалка', 2),
+(10, 'Ракетка', 2),
+(11, 'Теннисный мяч', 2),
+(12, 'Весовой мяч', 2),
+(13, 'Фитбол', 2),
+(14, 'Подставка/степ-платформа', 2),
+(15, 'Гантели', 2),
+(16, 'Коврик', 2),
+(17, 'Обруч', 2),
+(18, 'Тросы и ленты', 2),
+(19, 'Утяжелитель', 2),
+(20, 'Балансировочный тренажер', 2),
+(21, 'Эспандер', 2),
+(22, 'Батут', 2),
+(23, 'Скамейка/стул', 2),
+(24, 'Другое', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `user_login` varchar(64) NOT NULL,
+  `user_password` varchar(32) NOT NULL,
+  `mail_confirm` varchar(64) NOT NULL DEFAULT '',
+  `user_hash` varchar(32) NOT NULL DEFAULT '',
+  `user_surname` varchar(32) NOT NULL DEFAULT '',
+  `user_name` varchar(32) NOT NULL DEFAULT '',
+  `user_city` varchar(32) NOT NULL DEFAULT '',
+  `user_mail` varchar(32) NOT NULL DEFAULT '',
+  `user_phone` varchar(32) NOT NULL DEFAULT '',
+  `user_status` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT 'Текущий статус учетной записи: 0 - заблокирован, 1 - активен',
+  `id_vk` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в VKontakte',
+  `id_ok` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Одноклассниках',
+  `id_facebook` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Facebook',
+  `id_google` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Google',
+  `id_mailru` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Mail.ru',
+  `id_yandex` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Yandex',
+  `id_instagram` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Instagram'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_login`, `user_password`, `mail_confirm`, `user_hash`, `user_surname`, `user_name`, `user_city`, `user_mail`, `user_phone`, `user_status`, `id_vk`, `id_ok`, `id_facebook`, `id_google`, `id_mailru`, `id_yandex`, `id_instagram`) VALUES
+(1, 'serge', 'f25c28fa4d121e1ac3a1286c59822424', '', '720500624b447d80b255351a950eceab', 'Цветков', 'Сергей', 'Ростов-на-Дону', 'Tsvetkov-SA@grmp.ru', '', 1, '', '', '', '', '', '', ''),
+(55, 'marinichev@gmail.com', 'fbc2319fc1d590a922446e78ae0bcffe', '1ede2b7e8bd3ffd284b87872e5e88b54', '40197b3f452b6ac53071c97a850396dc', '', '', '', 'marinichev@gmail.com', '', 1, '', '', '3183576388371760', '1179186537465744', '', '', ''),
+(61, 'kohenator@gmail.com', '', '', '4f3368feb9e3cb1f19de74dd28938914', 'Третьяков', 'Станислав', '', 'kohenator@gmail.com', '', 1, '600424969', '376145030662', '', '1102349594390699', '', '', ''),
+(65, 'arcona@bk.ru', '', '', '7b9224293814f90dc2d8382d3f7aa2b7', 'Тращеев', 'Алексей', '', 'arcona@bk.ru', '', 1, '', '', '2957140464376381', '', '', '', ''),
+(66, 'thrascheev@googlemail.com', '', '', '4ad4cb819cfb5ee2e95e7affefb072e6', 'Thrashcheev', 'Aleksey', '', 'thrascheev@googlemail.com', '', 1, '', '', '', '1152845224243875', '', '', ''),
+(67, 'pleishner99@mail.ru', '', '', '7ff37197d2f5cbf160856686c546b3e0', 'Цветков', 'Сергей', '', 'pleishner99@mail.ru', '', 1, '136507481', '', '', '', '', '', ''),
+(68, 'qtxsjzkyos_1555298875@tfbnw.net', '', '', 'b5ae11821c34d568a1cf7d1ee02a86d8', 'Verna', 'Verna', '', 'qtxsjzkyos_1555298875@tfbnw.net', '', 1, '', '', '1015008388744485', '', '', '', ''),
+(70, 'z00m.serge@gmail.com', 'f25c28fa4d121e1ac3a1286c59822424', '74695e4a6b7bb7ca8c083cbdfa69dc54', '97bfe3558b1947880ce403040aec694e', '', '', '', 'z00m.serge@gmail.com', '', 1, '', '', '', '', '', '', '');
+
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `matches`
+--
+ALTER TABLE `matches`
+  ADD PRIMARY KEY (`match_id`);
+
+--
+-- Индексы таблицы `movie`
+--
+ALTER TABLE `movie`
+  ADD PRIMARY KEY (`mov_id`),
+  ADD KEY `match_id` (`match_id`);
+
+--
+-- Индексы таблицы `movie_comments`
+--
+ALTER TABLE `movie_comments`
+  ADD PRIMARY KEY (`com_id`);
+
+--
+-- Индексы таблицы `movie_tags`
+--
+ALTER TABLE `movie_tags`
+  ADD PRIMARY KEY (`mov_id`,`tag_id`),
+  ADD KEY `tag_id` (`tag_id`),
+  ADD KEY `mov_id` (`mov_id`);
+
+--
+-- Индексы таблицы `rates_jury`
+--
+ALTER TABLE `rates_jury`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `match_id` (`match_id`),
+  ADD KEY `movie_id` (`movie_id`),
+  ADD KEY `movie_user_id` (`movie_user_id`),
+  ADD KEY `reff_id` (`reff_id`) USING BTREE,
+  ADD KEY `myprize` (`myprize_status`);
+
+--
+-- Индексы таблицы `rates_users`
+--
+ALTER TABLE `rates_users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `match_id` (`match_id`),
+  ADD KEY `movie_id` (`movie_id`),
+  ADD KEY `rate_user_id` (`rate_user_id`),
+  ADD KEY `movie_user_id` (`movie_user_id`);
 
 --
 -- Индексы таблицы `refferies`
@@ -96,14 +368,77 @@ ALTER TABLE `refferies`
   ADD PRIMARY KEY (`reff_id`);
 
 --
+-- Индексы таблицы `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`tag_id`);
+
+--
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `id_vk` (`id_vk`),
+  ADD KEY `id_ok` (`id_ok`),
+  ADD KEY `id_facebook` (`id_facebook`),
+  ADD KEY `id_google` (`id_google`),
+  ADD KEY `id_mailru` (`id_mailru`),
+  ADD KEY `id_yandex` (`id_yandex`),
+  ADD KEY `id_instagram` (`id_instagram`),
+  ADD KEY `user_login` (`user_login`),
+  ADD KEY `user_password` (`user_password`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `matches`
+--
+ALTER TABLE `matches`
+  MODIFY `match_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID конкурса';
+
+--
+-- AUTO_INCREMENT для таблицы `movie`
+--
+ALTER TABLE `movie`
+  MODIFY `mov_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблицы `movie_comments`
+--
+ALTER TABLE `movie_comments`
+  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `rates_jury`
+--
+ALTER TABLE `rates_jury`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'UID записи';
+
+--
+-- AUTO_INCREMENT для таблицы `rates_users`
+--
+ALTER TABLE `rates_users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'UID записи';
 
 --
 -- AUTO_INCREMENT для таблицы `refferies`
 --
 ALTER TABLE `refferies`
   MODIFY `reff_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `tag_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID тега', AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -53,16 +53,16 @@ function GetContestPermission ($date_now){
 	}
 }
 
-// Функция  формирования строки из чекбоксов
-function GetCheckBoxString ($string_arr, $seperator){
-	$str_out = "";
-	if(count($string_arr)>0){
-		foreach($string_arr as $str){
-			$str_out .= $str.$seperator; 
-		}
-	}
-	return rtrim($str_out, $seperator);
-}
+// Функция  формирования строки из чекбоксов (ОТКЛЮЧЕНА ЗА НЕНАДОБНОСТЬЮ)
+// function GetCheckBoxString ($string_arr, $seperator){
+// 	$str_out = "";
+// 	if(count($string_arr)>0){
+// 		foreach($string_arr as $str){
+// 			$str_out .= $str.$seperator; 
+// 		}
+// 	}
+// 	return rtrim($str_out, $seperator);
+// }
 
 // Функция получения типа ссылки
 function GetVideoContentType ($mov_link){	

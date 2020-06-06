@@ -42,15 +42,15 @@ if (isset($_GET['code'])) {
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($curl);
     curl_close($curl);
-    $tokenInfo = json_decode($result, true);
+    $tokenInfo = @json_decode($result, true);
 
     if (isset($tokenInfo['access_token'])) {
         $params['access_token'] = $tokenInfo['access_token'];
 
-		$content = file_get_contents('https://www.googleapis.com/oauth2/v1/userinfo' . '?' . urldecode(http_build_query($params)));
+		$content = @file_get_contents('https://www.googleapis.com/oauth2/v1/userinfo' . '?' . urldecode(http_build_query($params)));
 		//echo $content."<br><br>\n\n";
 
-        $userInfo = json_decode($content, true);
+        $userInfo = @json_decode($content, true);
         if (isset($userInfo['id'])) {
             $userInfo = $userInfo;
             $result = true;

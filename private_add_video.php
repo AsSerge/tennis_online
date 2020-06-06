@@ -1,6 +1,11 @@
 <?php
+// @require($_SERVER['DOCUMENT_ROOT'].'/login/line_check.php');
+// @require($_SERVER['DOCUMENT_ROOT'].'/login/log_to_base.php');
+// @require($_SERVER['DOCUMENT_ROOT'].'/classes/tags.class.php');
+
 include ('./login/line_check.php');
 include ('./layout/site_function.php');
+include ('./classes/tags.class.php');
 ?>
 <?php include('./layout/site_head.php');?>
 <!-- Loader starts here -->
@@ -71,23 +76,23 @@ include ('./layout/site_function.php');
 
 								<input placeholder="Название ролика (не более 30 знаков)" type="text" name="mov_name"
 									required>
-								<select name="mov_contest" required>
+								<select name="match_id" required>
 									<?php
 									// Определяем список конкурсов в зависимости от текущей даты
 									if(GetContestPermission($date_now) == 1){
 										echo "<option value=''>Выберите категорию конкурса</option>";
-										echo "<option value='Удивительный теннис'>Удивительный теннис</option>";
-										echo "<option value='Семейный теннис'>Семейный теннис</option>";
+										echo "<option value='1>Удивительный теннис</option>";
+										echo "<option value='2'>Семейный теннис</option>";
 									}elseif(GetContestPermission($date_now) == 2){
 										echo "<option value=''>Выберите категорию конкурса</option>";
-										echo "<option value='Теннисная прокачка'>Теннисная прокачка</option>";
-										echo "<option value='Свой конкурс'>Свой конкурс</option>";	
+										echo "<option value='3'>Теннисная прокачка</option>";
+										echo "<option value='4'>Свой конкурс</option>";	
 									}else{
 										echo "<option value=''>Выберите категорию конкурса</option>";
-										echo "<option value='Удивительный теннис'>Удивительный теннис</option>";
-										echo "<option value='Семейный теннис'>Семейный теннис</option>";
-										echo "<option value='Теннисная прокачка'>Теннисная прокачка</option>";
-										echo "<option value='Свой конкурс'>Свой конкурс</option>";
+										echo "<option value='1'>Удивительный теннис</option>";
+										echo "<option value='2'>Семейный теннис</option>";
+										echo "<option value='3'>Теннисная прокачка</option>";
+										echo "<option value='4'>Свой конкурс</option>";
 									}
 									?>
 								</select>
@@ -129,19 +134,14 @@ include ('./layout/site_function.php');
 									</div>
 									<div class="move_check">
 										<?php
-										$mov_contest_arr = array('Скорость', 'Сила', 'Выносливость', 'Координация', 'Концентрация', 'Точность', 'Гибкость', 'Кардио');
-										$k=0;
-										foreach($mov_contest_arr as $contest){
+										$tags = new Tags($db);
+										foreach (($tags->getTags(1,3))[1] as $key => $value){
 											echo "<span>";
-											// echo "<input type='checkbox' id='kap{$k}' name='kap{$k}' value='yes'>";
-											// echo "<label for='kap{$k}'>{$contest}</label>";
-											echo "<input type='checkbox' id='tags{$k}' name='mov_tags[]' value='{$contest}'>";
-											echo "<label for='tags'>{$contest}</label>";
+											echo "<input type='checkbox' id='tags{$key}' name='mov_tags[]' value='{$key}'>";
+											echo "<label for='tags'>{$value}</label>";
 											echo "</span>";
-										$k++;	
 										}
 										?>
-
 									</div>
 								</aside>
 								<aside class="widget">
@@ -150,14 +150,12 @@ include ('./layout/site_function.php');
 									</div>
 									<div class="move_check">
 										<?php
-										$mov_equipment_arr = array('Скакалка', 'Ракетка', 'Теннисный мяч', 'Весовой мяч', 'Фитбол', 'Подставка/степ-платформа', 'Гантели', 'Коврик', 'Обруч', 'Тросы и ленты', 'Утяжелитель', 'Балансировочный тренажер', 'Эспандер', 'Батут', 'Скамейка/стул', 'Другое');
-										$k=0;
-										foreach($mov_equipment_arr as $equipment){
+										$equipment = new Tags($db);
+										foreach (($equipment->getTags(2,3))[2] as $key => $value){
 											echo "<span>";
-											echo "<input type='checkbox' id='equipment{$k}' name='mov_equipment[]' value='{$equipment}'>";
-											echo "<label for='equipment{$k}'>{$equipment}</label>";
+											echo "<input type='checkbox' id='tags{$key}' name='mov_equipment[]' value='{$key}'>";
+											echo "<label for='tags'>{$value}</label>";
 											echo "</span>";
-										$k++;	
 										}
 										?>
 									</div>

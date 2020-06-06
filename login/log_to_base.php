@@ -2,7 +2,7 @@
 // Home server
 $dbUsername='root';
 $dbPassword='root';
-$dbName='ten_base';
+$dbName='u1068761_default';
 $dbHost='localhost';
 
 // Work server
