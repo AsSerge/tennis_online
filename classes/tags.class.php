@@ -32,6 +32,7 @@
 class Tags{
 
 	public $db;	//Указатель на объект работы с базой данных
+	public $search_sql;
 
 
 
@@ -459,7 +460,7 @@ class Tags{
 		if($output){
 			if(!empty($data['fields'])){
 				$fields = is_array($data['fields']) ? array_map('addslashes',$data['fields']) : array(addslashes($data['fields']));
-				$sql = 'SELECT DISTINCT '.implode('`,M.`',$fields).' FROM `movie` as M';
+				$sql = 'SELECT DISTINCT M.`'.implode('`,M.`',$fields).'` FROM `movie` as M';
 			}else{
 				$sql = 'SELECT DISTINCT M.* FROM `movie` as M';
 			}
@@ -508,8 +509,10 @@ class Tags{
 
 		$sql.=' '.implode(' ',$ainner) . (empty($awhere) ? '' : ' WHERE '.implode(' AND ',$awhere)).$order.($limit>0 ? ' LIMIT '.$limit : '').($offset>0 ? ' OFFSET '.$offset : '');
 
-		echo "\n".$sql."\n";
-		
+		//echo "\n".$sql."\n";
+
+		$this->search_sql = $sql;
+
 		if(($stmt = $this->db->query($sql))===false){
 			return false;
 		}

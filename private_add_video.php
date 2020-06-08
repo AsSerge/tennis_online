@@ -42,7 +42,7 @@ include ('./classes/tags.class.php');
 					<div class="container">
 						<h3 class="border-title"> <span> Добавление ролика </span></h3>
 
-						<form method="POST" action="./login/move_save_exe.php">
+						<form method="POST" action="./login/move_save_exe.php" enctype="multipart/form-data">
 							<input type="hidden" name="user_id" value="<?=$user_id?>">
 							<div class="dt-sc-three-sixth column first">
 								<style>
@@ -65,8 +65,28 @@ include ('./classes/tags.class.php');
 									type="text" name="mov_link" id="move_load" required>
 								<div id="move_alert_info"></div>
 								<div class="one_move">
-
 								</div>
+
+								<style>
+								/* Стилизация кнопки загрузки файла */
+									.move_cover_btn .btn-tertiary{color:#555;padding:0;line-height:40px;width:270px;margin:auto;display:block;border:1px solid #555;text-align:center}
+									.move_cover_btn .btn-tertiary:hover,.move_cover_btn .btn-tertiary:focus{color:#888;border-color:#888}
+									.move_cover_btn .input-file{width:.1px;height:.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}
+									.move_cover_btn .input-file + .js-labelFile{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;cursor:pointer;}
+									.move_cover_btn .input-file + .js-labelFile .icon:before{content:"\f093"}
+									.move_cover_btn .input-file + .js-labelFile.has-file .icon:before{content:"\f00c";color:#5AAC7B}
+								</style>	
+								<div class="move_cover_btn">
+									<div class="form-group">
+										<input type="file" name="move_cover" id="file" class="input-file">
+										<label for="file" class="btn btn-tertiary js-labelFile" >
+										<i class="icon fa fa-check"></i>
+										<span class="js-fileName">Загрузить файл обложки</span>
+										</label>
+									</div>
+								</div>
+
+								<div class="dt-sc-hr-invisible-small"></div>
 								<textarea
 									placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
 									name="mov_description" id="mov_description"></textarea>
@@ -161,7 +181,7 @@ include ('./classes/tags.class.php');
 									</div>
 								</aside>
 							</div>
-							<div style="text-align: center;">
+							<div style="text-align: center; border:1px solid black">
 								<input type="submit" class="dt-sc-button small" data-hover="Новый ролик"
 									value="Отправить на конкурс" id="send_move_btn">
 							</div>

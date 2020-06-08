@@ -65,17 +65,6 @@ function set_selected($arr, $data_from_base){
 }
 
 
-// Функция  формирования строки из чекбоксов (ОТКЛЮЧЕНА ЗА НЕНАДОБНОСТЬЮ)
-// function GetCheckBoxString ($string_arr, $seperator){
-// 	$str_out = "";
-// 	if(count($string_arr)>0){
-// 		foreach($string_arr as $str){
-// 			$str_out .= $str.$seperator; 
-// 		}
-// 	}
-// 	return rtrim($str_out, $seperator);
-// }
-
 // Функция очистки сстроки
 function ClearPostString($string_to_clean){
 
@@ -83,6 +72,7 @@ function ClearPostString($string_to_clean){
 	$clear_string = stripslashes($clear_string); // Экранирование
 	$clear_string = strip_tags($clear_string); // Теги
 	$clear_string = htmlspecialchars($clear_string); // HTML
+	$clear_string = trim(preg_replace('/\s\s+/', ' ',str_replace(array('\\','\'','"','union','select','insert','delete'), ' ',$clear_string)));
 
 return $clear_string;	
 }
@@ -223,6 +213,59 @@ function GetVideoContentType ($mov_link){
 		return $mov;
 	}
 } 
+//Работа с изображениями
+// $source     = Исходный файл
+// $new_file   = Новый файл
+// $size       = Необходимый размер
+// $img_change = Необходимость в изменениии размера
+function quest_image($source, $new_file, $size, $img_change){
+	//Получаем размеры исходной картинки
+	$size_source_pic = getimagesize($source);
+		$p_width = $size_source_pic[0];//Ширина
+		$p_height = $size_source_pic[1];//Высота
+	// новая ширина (получаем из параметров)
+		$width = $size;
+	//Определяем коэффициент уменьшения
+		$kresize = $width / $p_width;
+		$height = round($p_height * $kresize); // новая высота
+		$imge_edit_resize = false;
+//Если новая высота картинки больше, чем заданная ширина, то ширину картинки уменьшаем с коэффициентом уменьшения.
+// Холст создаем квадратный заданный размер + 2px. Фон - белый.
+		if($height > $size){
+			$height = $size;
+			$kresize = $height / $p_height;
+			$width = round($p_width * $kresize);
+			$imge_edit_resize = true;
+		}
+
+	// цвет заливки фона
+		$rgb = 0xffffff;
+	// создаем холст пропорциональное сжатой картинке + 2px
+		if($imge_edit_resize == true OR $img_change == true){
+				$img = imagecreatetruecolor($size, $size);
+		}else{
+				$img = imagecreatetruecolor($width, $height);
+		}
+	// заливаем холст цветом $rgb
+		imagefill($img, 0, 0, $rgb);
+	// загружаем исходную картинку
+		$photo = imagecreatefromjpeg($source);
+	// копируем на холст сжатую картинку с учетом расхождений
+	// цель, иссходник, x-результат, y-результат, x-исходного, y-исходного, ширина-результат, высота-результат, ширина-исходного, высота-исходного
+	//	imagecopyresampled($img, $photo, 0, 0, 0, 0, $width, $height, $p_width, $p_height);
+		if($imge_edit_resize == true){
+			imagecopyresampled($img, $photo, ($size - $width)/2, 0, 0, 0, $width, $height, $p_width, $p_height);
+		}else if($img_change == true){
+			imagecopyresampled($img, $photo, 0, ($size - $height)/2, 0, 0, $width, $height, $p_width, $p_height);
+		}else{
+			imagecopyresampled($img, $photo, 0, 0, 0, 0, $width, $height, $p_width, $p_height);
+		}       
+	// сохраняем результат
+		imagejpeg($img, $new_file);
+	// очищаем память после выполнения скрипта
+		imagedestroy($img);
+		imagedestroy($photo);
+}
 
 
 ?>

@@ -7,15 +7,17 @@ include ('./PHPMailer/PHPMailerFunction.php'); // Подключаем функ�
 
 if(isset($_POST['mov_id'])){	
 	$mov_id = $_POST['mov_id'];
+	$mov_name = ClearPostString($_POST['mov_name']); // Название
 	$mov_description = ClearPostString($_POST['mov_description']); // Описание
 	$mov_age_cat = $_POST['mov_age_cat']; // Возрастная категория
 
-	$sql = "UPDATE movie SET mov_description = ?, mov_age_cat = ? WHERE mov_id = ?";
+	$sql = "UPDATE movie SET mov_name = ?, mov_description = ?, mov_age_cat = ? WHERE mov_id = ?";
 	$stmt = $db->prepare($sql); // Готовим запрос
 
-		$stmt->bindParam(1, $mov_description);
-		$stmt->bindParam(2, $mov_age_cat);
-		$stmt->bindParam(3, $mov_id);
+		$stmt->bindParam(1, $mov_name);
+		$stmt->bindParam(2, $mov_description);
+		$stmt->bindParam(3, $mov_age_cat);
+		$stmt->bindParam(4, $mov_id);
 	$stmt->execute();
 		
 	$tag = new Tags($db);
@@ -59,7 +61,7 @@ if(isset($_POST['mov_id'])){
 		$db->beginTransaction(); // Старт транзакции
 
 		$sql = "INSERT INTO movie (`user_id`, `match_id`, `mov_added`, `mov_link_type`, `mov_link`, `mov_name`, `mov_description`, `mov_age_cat`, `mov_status`)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = $db->prepare($sql); // Готовим запрос
 
 		$stmt->bindParam(1, $user_id);
@@ -70,7 +72,7 @@ if(isset($_POST['mov_id'])){
 		$stmt->bindParam(6, $mov_name);
 		$stmt->bindParam(7, $mov_description);
 		$stmt->bindParam(8, $mov_age_cat);
-		$stmt->bindParam(9, $mov_status);		
+		$stmt->bindParam(9, $mov_status);
 		// Исполняем запрос - Заполняем таблицу ролика
 		$stmt->execute();
 		// Получаем ID последней записи
@@ -90,6 +92,22 @@ if(isset($_POST['mov_id'])){
 			}
 		}
 		$db->commit(); // Фиксация добавления
+
+		// Обработка загруженного файла (имя файла формируется по move_id)
+		$source_dir = "/images/move_cover/"; // Директория хранения файлов
+		if(!empty($_FILES['move_cover']['tmp_name']){
+			$img = $_FILES['move_cover']['tmp_name'];
+			$img_name = $_FILES['move_cover']['name'];
+			if(($_FILES['move_cover']['type'] == 'image/gif' || $_FILES['move_cover']['type'] == 'image/jpeg' || $_FILES['move_cover']['type'] == 'image/png') && ($_FILES['move_cover']['size'] != 0 and $_FILES['move_cover']['size']<=1024000)){
+				
+			}
+
+
+			quest_image($img, $source_dir."mov_".$move_id."_".$prod_image, $mfb, true);
+		}
+		
+
+
 		// Возвращаемся на страницу
 		header("Location: /private.php"); exit();
 	}

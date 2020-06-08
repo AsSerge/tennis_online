@@ -87,11 +87,12 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 
 							<div class="dt-sc-three-sixth column last">
 	
-								<h3><?=$move['mov_name']?></h3>
-								<h4><?=$move['name']?></h4>
+								
+								<h3>Конкурс: <?=$move['name']?></h3>
+								<input placeholder="Название ролика (не более 60 знаков)" maxlength="60" type="text" name="mov_name" value = "<?=$move['mov_name']?>" required>
 								<textarea
 									placeholder="Описание ролика (не более 200 знаков) - коротко опишите для кого Ваш ролик и какие задачи решает."
-									name="mov_description" id="mov_description"><?=$move['mov_description']?></textarea>
+									name="mov_description" id="mov_description" maxlength="200"><?=$move['mov_description']?></textarea>
 								<?php
 								// Выводим возрастную категорию
 								$sel_age = ["Любой"=>"Любой", "до 8 лет"=>"до 8 лет", "9-10 лет"=>"9-10 лет", "до 13 лет"=>"до 13 лет",	"до 15 лет"=>"до 15 лет", "до 17 лет"=>"до 17 лет", "взрослые"=>"взрослые"];

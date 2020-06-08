@@ -117,6 +117,32 @@ jQuery(window).load(function ($) {
 			//***********************************************************
 		}
 	});
+
+	// Стилизация кнопки загрузки файла обложки
+	$('.input-file').each(function () {
+		var $input = $(this),
+			$label = $input.next('.js-labelFile'),
+			labelVal = $label.html();
+
+		$input.on('change', function (element) {
+			var fileName = '';
+			if (element.target.value) fileName = element.target.value.split('\\').pop();
+			fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
+		});
+	});
+
+	// Скрипт для прокрутки к главному ролику
+
+	$('.sm').on("click", function (e) {
+		e.preventDefault();
+		var id = $(this).attr('href');
+		var top = $(id).offset().top; // получаем координаты блока
+		$('body, html').animate({
+			scrollTop: top
+		}, 600); // плавно переходим к блоку
+	});
+
+
 });
 // Настройка проверки строки ввода пути к ролику
 
@@ -146,4 +172,5 @@ function GetVideoContentType(long_link) {
 	} else {
 		return false;
 	}
+
 }
