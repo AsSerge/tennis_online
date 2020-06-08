@@ -85,7 +85,7 @@ if(count($mov_data_names) > 0){
 							</style>
 							<?php
 							if(count($mov_data_names) > 0){
-									echo "<div class='first mov_legend'>";
+									echo "<div class='first mov_legend'";
 										echo "<center>";
 										echo GetVideoContentType($move['mov_link'])['page_place'];
 										echo "</center>";
@@ -116,14 +116,14 @@ if(count($mov_data_names) > 0){
 									echo "<div class='mov_legend'>";	
 									echo "<p><span>Описание: </span>{$move['mov_description']}</p>";
 									echo "</div>";
-									echo "</div>";
+									
 									if($move['mov_status'] == 1 || $move['mov_status'] == 2){
 										echo "<a href='./login/set_status_video_exe.php?mov_id={$mov_id}&act=block' class='dt-sc-button small' data-hover='Ролик'>Заблокировать</a>";
 									}elseif($move['mov_status'] == 0){
 										echo "<a href='./login/set_status_video_exe.php?mov_id={$mov_id}&act=unblock' class='dt-sc-button small' data-hover='Ролик'>Разблокировать</a>";
 									}
 									echo "<a href='/private_edit_video.php?mov_id={$mov_id}' class='dt-sc-button small' data-hover='Описание'>Редактировать</a>";
-									}	
+									}
 								?>
 						</div>
 
