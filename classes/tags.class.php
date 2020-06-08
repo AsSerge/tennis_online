@@ -317,23 +317,37 @@ class Tags{
 	 * 			не работает, если $output задан как 0
 	 * 			по-умолчанию: * (возвращает все поля)
 	 * 
-	 * $match_id - ID конкурса, в котором участвуют видеоролики, среди которых ведется поиск
+	 * 	$match_id - ID конкурса, в котором участвуют видеоролики, среди которых ведется поиск
 	 * 			если не задано, поиск ведется среди всех видеороликов
 	 * 			по-умолчанию: не задано
 	 * 
-	 * 	$order_by - поле, по которому идет сортировка
+	 * $order - поля, по которым идет сортировка, задается в виде ассоциативного массива
+	 * 				array( FIELD => ORDER_TYPE, FIELD => ORDER_TYPE, FIELD => ORDER_TYPE)
+	 * 				FIELD - поле таблицы, по которому будет делаться сортировка
+	 * 				ORDER_TYPE - Направление сортировки:
+	 * 					ASC - А..Я
+	 * 					DESC - Я..А
 	 * 				по-умолчанию: нет сортировки
 	 * 
-	 * 	$order_type - Направление сортировки:
-	 * 				ASC - А..Я
-	 * 				DESC - Я..А
-	 * 				по-умолчанию: ASC
 	 * 
-	 * 	$term - если задано, то будет осуществлен поиск по полю `mov_name`
-	 * 	$term_type - Тип поиска, возможные значения:
+	 * $term - если задано, то будет осуществлен поиск по полю `mov_name`
+	 * $term_type - Тип поиска, возможные значения:
 	 * 			AND - в `mov_name` должны быть все слова из $term
 	 * 			OR - в `mov_name` должно быть хотя бы одно из слов в $term
 	 * 			по-умолчанию: AND
+	 * 
+	 * $status - видеоролиики начиная от какого статуса следует требуется вернуть.
+	 * 			Возможные значения:
+	 * 			0 - Все видеоролики (заблокированные, ожидающие аппрува, активные)
+	 * 			1 - Только ожидающие аппрува и/или активные
+	 * 			2 - Только активные
+	 * 			По умолчанию: 2
+	 * 
+	 * $limit	- Максимальное количество возвращаемых видеоролииков
+	 * 			По умолчанию: 0 (не ограничено)
+	 * 
+	 * $offset	- Смещение в результатах поиска на указанное количество записей
+	 * 			По умолчанию: 0 (нет смещения)
 	 * 
 	 * Возвращает FALSE в случае ошибки или результат в случае успеха
 	 * 
@@ -349,8 +363,10 @@ class Tags{
 	 */
 	public function searchMovies($data=array()){
 
+		$status = !isset($data['status']) ? 2 : min(2,max(0,intval($data['status'])));
+
 		$ainner = [];
-		$awhere = [];
+		$awhere = ['M.`mov_status`>='.$status];
 
 		if(!empty($data['movies']) && is_array($data['movies'])){
 			 $awhere[]='M.`mov_id` IN('.implode(',',array_map('intval',$data['movies'])).')';
@@ -411,14 +427,21 @@ class Tags{
 		}
 
 		$order = '';
-		if(!empty($data['order_by'])){
-			$order = ' ORDER BY M.`'.addslashes($data['order_by']).'` '.($data['order_type'] == 'DESC' ? 'DESC' : 'ASC');
+		if(!empty($data['order'])&&is_array($data['order'])){
+			$flds = [];
+			foreach($data['order'] as $field=>$type){
+				$flds[] = 'M.`'.$field.'` '.($type == 'DESC' ? 'DESC' : 'ASC');
+			}
+			$order = ' ORDER BY '.implode(',', $flds);
 		}
+
+		$limit = isset($data['limit'])? abs(intval($data['limit'])) : 0;
+		$offset = isset($data['offset'])? abs(intval($data['offset'])) : 0;
 
 		$result = [];
 
-		$sql.=' '.implode(' ',$ainner) . (empty($awhere) ? '' : ' WHERE '.implode(' AND ',$awhere)).$order;
-		
+		$sql.=' '.implode(' ',$ainner) . (empty($awhere) ? '' : ' WHERE '.implode(' AND ',$awhere)).$order.($limit>0 ? ' LIMIT '.$limit : '').($offset>0 ? ' OFFSET '.$offset : '');
+
 		echo "\n".$sql."\n";
 		
 		if(($stmt = $this->db->query($sql))===false){

@@ -119,9 +119,6 @@ jQuery(window).load(function ($) {
 	});
 });
 // Настройка проверки строки ввода пути к ролику
-// vk
-// twitter
-
 
 function GetVideoContentType(long_link) {
 	if (/^https:\/\/vimeo.com\//.exec(long_link)) {
@@ -136,7 +133,11 @@ function GetVideoContentType(long_link) {
 		return true;
 	} else if (/^https:\/\/www.facebook.com\//.exec(long_link)) {
 		return true;
+	} else if (/^<iframe src="https:\/\/www.facebook.com\/plugins\/video/.exec(long_link)) {
+		return true;
 	} else if (/^https:\/\/ok.ru\/video\//.exec(long_link)) {
+		return true;
+	} else if (/^<blockquote class="tiktok-embed" cite="https:\/\/www.tiktok.com\//.exec(long_link)) {
 		return true;
 	} else if (/^<iframe src="\/\/vk.com\/video_ext.php/.exec(long_link)) {
 		return true;

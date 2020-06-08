@@ -241,13 +241,12 @@ $juror = $all_data->fetch(PDO::FETCH_ASSOC);
 
 										<ul class="project-details">
 										<?php
-												if ($juror['reff_website'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_website']}'>{$juror['reff_website']}</a></li>";}
-
-												if ($juror['reff_atp_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_atp_link']}'>{$juror['reff_atp_link']}</a></li>";}
-												if ($juror['reff_wta_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_wta_link']}'>{$juror['reff_wta_link']}</a></li>";}
-												if ($juror['reff_itf_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_itf_link']}'>{$juror['reff_itf_link']}</a></li>";}
-												if ($juror['reff_federation_cup_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_federation_cup_link']}'>{$juror['reff_']}</a></li>";}
-												if ($juror['reff_davis_cup_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_davis_cup_link']}'>{$juror['reff_davis_cup_link']}</a></li>";}
+												if ($juror['reff_website'] != '') {echo "<li><span class='fa fa-link'></span><strong>Website: </strong><a href='{$juror['reff_website']}' target='_blanc'>{$juror['reff_website']}</a></li>";}
+												if ($juror['reff_atp_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>ATP: </strong><a href='{$juror['reff_atp_link']}' target='_blanc'>Ссылка на профиль</a></li>";}
+												if ($juror['reff_wta_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>WTA: </strong><a href='{$juror['reff_wta_link']}' target='_blanc'>Ссылка на профиль</a></li>";}
+												if ($juror['reff_itf_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>ITF: </strong><a href='{$juror['reff_itf_link']}' target='_blanc'>Ссылка на профиль</a></li>";}
+												if ($juror['reff_federation_cup_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Кубок Федерации: </strong><a href='{$juror['reff_federation_cup_link']}' target='_blanc'>Ссылка на профиль</a></li>";}
+												if ($juror['reff_davis_cup_link'] != '') {echo "<li><span class='fa fa-link'></span><strong>Кубок Дэвиса: </strong><a href='{$juror['reff_davis_cup_link']}' target='_blanc'>Ссылка на профиль</a></li>";}
 
 												echo "<li><span class='fa fa-link'></span><strong>Wikipedia: </strong><a href='{$juror['reff_wiki']}' target='_blank'>{$juror['reff_name']} {$juror['reff_surname']}</a></li>";
 										?>

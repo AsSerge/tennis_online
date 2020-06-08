@@ -53,6 +53,18 @@ function GetContestPermission ($date_now){
 	}
 }
 
+//Функция установки атрибута "selected" в зависимости от полученной из базы информации
+function set_selected($arr, $data_from_base){
+	foreach($arr as $key => $value ){
+		$select_key = ($value == $data_from_base) ? "selected" : ""; //Тринарный оператор "?"
+		// Если нужно значение
+		// echo "<option value='".$value."' ".$select_key.">".$value."</option>";
+		// Если нужен ключ
+		echo "<option value='".$value."' ".$select_key.">".$key."</option>";
+	}
+}
+
+
 // Функция  формирования строки из чекбоксов (ОТКЛЮЧЕНА ЗА НЕНАДОБНОСТЬЮ)
 // function GetCheckBoxString ($string_arr, $seperator){
 // 	$str_out = "";
@@ -64,57 +76,6 @@ function GetContestPermission ($date_now){
 // 	return rtrim($str_out, $seperator);
 // }
 
-// Функция получения типа ссылки
-function GetVideoContentType ($mov_link){	
-	if(preg_match('/^https:\/\/vimeo.com\//', $mov_link)){
-		$mov['type'] = "vimeo";
-		$mov['short_link'] = str_replace("https://vimeo.com/", "", $mov_link);
-		return $mov;
-	}elseif(preg_match('/^https:\/\/www.instagram.com\/p\//' , $mov_link)){
-		$mov['type'] = "instagram";
-		preg_match('/^https:\/\/www.instagram.com\/p\/(\S+\b)(\/)/', $mov_link, $vlink_raw);
-			if($vlink_raw[2] == '/'){
-				$mov['short_link'] = $vlink_raw[1]; 
-			}else{
-				$mov['short_link'] = str_replace("https://www.instagram.com/p/", "", $mov_link);
-			}
-		return $mov;
-	}elseif(preg_match('/^https:\/\/youtu.be\//', $mov_link)){
-		$mov['type'] = "youtube";
-		$mov['short_link'] = str_replace("https://youtu.be/", "", $mov_link);
-		return $mov;
-	}elseif(preg_match('/^https:\/\/www.youtube.com\/watch\?v=/', $mov_link)){
-		$mov['type'] = "youtube";
-		$mov['short_link'] = str_replace("https://www.youtube.com/watch?v=", "", $mov_link);
-		return $mov;
-	}elseif(preg_match('/src="https:\/\/www.youtube.com\/embed\//', $mov_link)){
-		$mov['type'] = "youtube";
-		preg_match('/(\/embed\/)(\S+\b)/', $mov_link, $vlink_raw);
-		$mov['short_link'] = $vlink_raw[2];
-		return $mov;
-	}elseif(preg_match('/^https:\/\/ok.ru\/video\//', $mov_link)){
-		$mov['type'] = "ok";
-		$mov['short_link'] = str_replace("https://ok.ru/video", "", $mov_link);
-		return $mov;
-	}elseif(preg_match('/^https:\/\/www.facebook.com\/\S+\b\/videos/', $mov_link)){
-		$mov['type'] = "facebook";
-		preg_match('/^https:\/\/www.facebook.com\/(\S+\b)\/videos\/(\S+\b)\//',$mov_link, $vlink_raw);
-		$mov['short_link'] = $vlink_raw[1]."/".$vlink_raw[2];
-		return $mov;
-	}elseif(preg_match('/^https:\/\/ok.ru\/video\//', $mov_link)){
-		$mov['type'] = "ok";
-		$mov['short_link'] = str_replace("https://ok.ru/video/", "", $mov_link);
-		return $mov;
-	}elseif(preg_match('/^<iframe src="\/\/vk.com\/video_ext.php/', $mov_link)){
-		$mov['type'] = "vk";
-		$mov['short_link'] = $mov_link;
-		return $mov;
-	}elseif(preg_match('/^<blockquote class="twitter-tweet">/', $mov_link)){
-		$mov['type'] = "twitter";
-		$mov['short_link'] = $mov_link;
-		return $mov;
-	}
-} 
 // Функция очистки сстроки
 function ClearPostString($string_to_clean){
 
@@ -125,5 +86,143 @@ function ClearPostString($string_to_clean){
 
 return $clear_string;	
 }
+
+// Функция получения типа ссылки
+function GetVideoContentType ($mov_link){	
+	if(preg_match('/^https:\/\/vimeo.com\//', $mov_link)){
+		$mov['type'] = "vimeo";
+		$mov['short_link'] = str_replace("https://vimeo.com/", "", $mov_link);
+		$mov['page_place'] = "
+		<iframe src='https://player.vimeo.com/video/{$mov['short_link']}' width='640'
+			height='360' frameborder='0' allow='autoplay; fullscreen'
+			allowfullscreen></iframe>
+		";
+		return $mov;
+	}
+	elseif(preg_match('/^https:\/\/www.instagram.com\/p\//' , $mov_link))
+	{
+		$mov['type'] = "instagram";
+		preg_match('/^https:\/\/www.instagram.com\/p\/(\S+\b)(\/)/', $mov_link, $vlink_raw);
+			if($vlink_raw[2] == '/'){
+				$mov['short_link'] = $vlink_raw[1]; 
+			}else{
+				$mov['short_link'] = str_replace("https://www.instagram.com/p/", "", $mov_link);
+			}
+		$mov['page_place'] = "
+		<blockquote class='instagram-media' data-instgrm-version='7'>
+		<a href='https://www.instagram.com/p/{$mov['short_link']}/media/?size=s'></a>
+		</blockquote>
+		<script async defer src='//platform.instagram.com/en_US/embeds.js'></script
+		";
+		return $mov;
+	}
+	elseif(preg_match('/^https:\/\/youtu.be\//', $mov_link)){
+		$mov['type'] = "youtube";
+		$mov['short_link'] = str_replace("https://youtu.be/", "", $mov_link);
+		$mov['page_place'] = "
+		<iframe width='100%' height='350px'src='https://www.youtube.com/embed/{$mov['short_link']}' 
+			frameborder='0' 
+			allow='accelerometer; 
+			autoplay; 
+			encrypted-media; 
+			gyroscope; 
+			picture-in-picture' 
+			allowfullscreen>
+			</iframe>
+		";
+		return $mov;
+	}
+	elseif (preg_match('/^https:\/\/www.youtube.com\/watch\?v=/', $mov_link)){
+		$mov['type'] = "youtube";
+		$mov['short_link'] = str_replace("https://www.youtube.com/watch?v=", "", $mov_link);
+		$mov['page_place'] = "
+		<iframe width='100%' height='350px'src='https://www.youtube.com/embed/{$mov['short_link']}' 
+			frameborder='0' 
+			allow='accelerometer; 
+			autoplay; 
+			encrypted-media; 
+			gyroscope; 
+			picture-in-picture' 
+			allowfullscreen>
+			</iframe>
+		";
+		return $mov;
+	}
+	elseif(preg_match('/src="https:\/\/www.youtube.com\/embed\//', $mov_link)){
+		$mov['type'] = "youtube";
+		preg_match('/(\/embed\/)(\S+\b)/', $mov_link, $vlink_raw);
+		$mov['short_link'] = $vlink_raw[2];
+		$mov['page_place'] = "
+		<iframe width='100%' height='350px'src='https://www.youtube.com/embed/{$mov['short_link']}' 
+			frameborder='0' 
+			allow='accelerometer; 
+			autoplay; 
+			encrypted-media; 
+			gyroscope; 
+			picture-in-picture' 
+			allowfullscreen>
+			</iframe>
+		";
+		return $mov;
+	}
+	elseif(preg_match('/^https:\/\/ok.ru\/video\//', $mov_link)){
+		$mov['type'] = "ok";
+		$mov['short_link'] = str_replace("https://ok.ru/video", "", $mov_link);
+		$mov['page_place'] = "
+		<iframe width='100%' height='350'
+		src='//ok.ru/videoembed/{$mov['short_link']}'
+		frameborder='0'
+		allow='autoplay'
+		allowfullscreen>
+		</iframe>
+		";
+		return $mov;
+	}
+	elseif(preg_match('/^https:\/\/www.facebook.com\/\S+\b\/videos/', $mov_link)){
+		$mov['type'] = "facebook";
+		preg_match('/^https:\/\/www.facebook.com\/(\S+\b)\/videos\/(\S+\b)\//',$mov_link, $vlink_raw);
+		$mov['short_link'] = $vlink_raw[1]."/".$vlink_raw[2];
+		$mov['page_place'] = "
+		<iframe src='https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{$vlink_raw[1]}%2Fvideos%2F{$vlink_raw[2]}%2F&show_text=0&width=560' 
+			width='100%'
+			height='350'
+			style='border:none;overflow:hidden'
+			scrolling='no'
+			frameborder='0'
+			allowTransparency='true'
+			allowFullScreen='true'>
+			</iframe>
+		";
+		return $mov;
+	}
+	
+	elseif(preg_match('/^<iframe src="https:\/\/www.facebook.com\/plugins\/video/', $mov_link)){
+		$mov['type'] = "facebook";
+		$mov['short_link'] = $mov_link;
+		$mov['page_place'] = $mov['short_link'];
+		return $mov;
+	}
+	
+	elseif(preg_match('/^<blockquote class="tiktok-embed" cite="https:\/\/www.tiktok.com\//', $mov_link)){
+		$mov['type'] = "tiktok";
+		$mov['short_link'] = $mov_link;
+		$mov['page_place'] = $mov['short_link'];
+		return $mov;
+	}
+
+	elseif(preg_match('/^<iframe src="\/\/vk.com\/video_ext.php/', $mov_link)){
+		$mov['type'] = "vk";
+		$mov['short_link'] = $mov_link;
+		$mov['page_place'] = $mov['short_link'];
+		return $mov;
+	}
+	elseif(preg_match('/^<blockquote class="twitter-tweet">/', $mov_link)){
+		$mov['type'] = "twitter";
+		$mov['short_link'] = $mov_link;
+		$mov['page_place'] = $mov['short_link'];
+		return $mov;
+	}
+} 
+
 
 ?>
