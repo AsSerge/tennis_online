@@ -9,23 +9,24 @@ $mov_data = $db->prepare($sql1);
 $mov_data->execute([$user_id]);
 $mov_data_names = $mov_data->fetchAll(PDO::FETCH_ASSOC);
 
+if(count($mov_data_names) > 0){ 
 // Получаем максимальное или минимальное значение ID ролика для пользователя
-foreach($mov_data_names as $on_id){$k_stat[] = $on_id['mov_id'];}
-$start_move = min($k_stat); // Первым выводится первый загруженный ролик
-$mov_id = (isset($_GET['mov_id'])) ? $_GET['mov_id'] : $start_move;
+	foreach($mov_data_names as $on_id){$k_stat[] = $on_id['mov_id'];}
+	$start_move = min($k_stat); // Первым выводится первый загруженный ролик
+	$mov_id = (isset($_GET['mov_id'])) ? $_GET['mov_id'] : $start_move;
 
 
-$sql = "SELECT * FROM movie 
-LEFT JOIN matches ON movie.match_id = matches.match_id
-WHERE user_id = {$user_id} AND mov_id = ?";
-$all_data = $db->prepare($sql);
-$all_data->execute([$mov_id]);
-$move = $all_data->fetch(PDO::FETCH_ASSOC);
+	$sql = "SELECT * FROM movie 
+	LEFT JOIN matches ON movie.match_id = matches.match_id
+	WHERE user_id = {$user_id} AND mov_id = ?";
+	$all_data = $db->prepare($sql);
+	$all_data->execute([$mov_id]);
+	$move = $all_data->fetch(PDO::FETCH_ASSOC);
 
-// Получаем все теги ролика (Теги и оборудование)
-$tag = new Tags($db);
-$all_tags = $tag->getMovieTags($mov_id, 3);
-
+	// Получаем все теги ролика (Теги и оборудование)
+	$tag = new Tags($db);
+	$all_tags = $tag->getMovieTags($mov_id, 3);
+}
 ?>
 <?php include('./layout/site_head.php');?>
 <!-- Loader starts here -->
@@ -62,12 +63,18 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 					<section id="primary" class="page-with-sidebar page-with-right-sidebar">
 
 						<h3 class="border-title"> <span> Мои ролики </span></h3>
-
-						<div class="dt-excersise-title title">
-							<p class="count"> <a href="#"><?=$move['voteuser_avg']?><br>
-									<span>мяч</span></a> </p>
-							<h5><a href="#"><?=$move['mov_name']?></a></h5>
-						</div>
+						<?php
+						if(count($mov_data_names) > 0){ 
+							echo "<div class='dt-excersise-title title'>";
+							echo "	<p class='count'> <a href='#'>{$move['voteuser_avg']}<br>";
+							echo "			<span>мяч</span></a> </p>";
+							echo "	<h5><a href='#'>{$move['mov_name']}</a></h5>";
+							echo "</div>";
+						}else{
+							echo "<h4>Здесь вы можете добавить ваш ролик для участия в конкурсе</h4>";
+							echo "Ознакомьтесь с правилами размещения роликов";
+						}
+						?>
 						<div class='dt-sc-workout-detail'>
 							<style>
 								.mov_legend span {
@@ -77,6 +84,7 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 								}
 							</style>
 							<?php
+							if(count($mov_data_names) > 0){
 									echo "<div class='first mov_legend'>";
 										echo "<center>";
 										echo GetVideoContentType($move['mov_link'])['page_place'];
@@ -85,8 +93,8 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 									echo "<div class='dt-sc-hr-invisible-small'></div>";
 									echo "<div class='dt-excersise-detail mov_legend'>";
 										echo "<p><span>Категория: </span>{$move['name']}</p>";
-										echo "<p><span>Возрастная категория: </span>{$move['mov_age_cat']}</p>";										
-										if(count($all_tags[1] > 0)){
+										echo "<p><span>Возрастная категория: </span>{$move['mov_age_cat']}</p>";
+										if(isset($all_tags[1])){
 											echo "<p><span>Теги: </span>";
 												$one_tag = "";
 												foreach($all_tags[1] as $tag){
@@ -94,7 +102,7 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 												}
 												echo rtrim($one_tag, ", "); 
 											echo "</p>";
-										}if(count($all_tags[2]) > 0){
+										}if(isset($all_tags[2])){
 											echo "<p><span>Принадлежности: </span>";
 												$one_tag = "";
 											foreach($all_tags[2] as $tag){
@@ -104,19 +112,19 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 											echo "</p>";
 										}
 									echo "</div>";
+									echo "<div class='dt-sc-clear'></div>";
+									echo "<div class='mov_legend'>";	
+									echo "<p><span>Описание: </span>{$move['mov_description']}</p>";
+									echo "</div>";
+									
+									if($move['mov_status'] == 1 || $move['mov_status'] == 2){
+										echo "<a href='./login/set_status_video_exe.php?mov_id={$mov_id}&act=block' class='dt-sc-button small' data-hover='Ролик'>Заблокировать</a>";
+									}elseif($move['mov_status'] == 0){
+										echo "<a href='./login/set_status_video_exe.php?mov_id={$mov_id}&act=unblock' class='dt-sc-button small' data-hover='Ролик'>Разблокировать</a>";
+									}
+									echo "<a href='/private_edit_video.php?mov_id={$mov_id}' class='dt-sc-button small' data-hover='Описание'>Редактировать</a>";
+									}
 								?>
-							<div class='dt-sc-clear'></div>
-							<div class="mov_legend">
-								<p><span>Описание: </span><?=$move['mov_description']?></p>
-								<?php
-								if($move['mov_status'] == 1 || $move['mov_status'] == 2){
-									echo "<a href='./login/set_status_video_exe.php?mov_id={$mov_id}&act=block' class='dt-sc-button small' data-hover='Ролик'>Заблокировать</a>";
-								}elseif($move['mov_status'] == 0){
-									echo "<a href='./login/set_status_video_exe.php?mov_id={$mov_id}&act=unblock' class='dt-sc-button small' data-hover='Ролик'>Разблокировать</a>";
-								}
-								?>
-								<a href='/private_edit_video.php?mov_id=<?=$mov_id?>' class='dt-sc-button small' data-hover='Описание'>Редактировать</a>
-							</div>
 						</div>
 
 

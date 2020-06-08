@@ -5,8 +5,7 @@ include ('../classes/tags.class.php');
 include ('./PHPMailer/PHPMailerFunction.php'); // Подключаем функцию отправки почты
 //************************************* Обработчик загрузки ролика **************************************/
 
-if(isset($_POST['mov_id'])){
-	$db->beginTransaction(); // Старт транзакции
+if(isset($_POST['mov_id'])){	
 	$mov_id = $_POST['mov_id'];
 	$mov_description = ClearPostString($_POST['mov_description']); // Описание
 	$mov_age_cat = $_POST['mov_age_cat']; // Возрастная категория
@@ -18,16 +17,21 @@ if(isset($_POST['mov_id'])){
 		$stmt->bindParam(2, $mov_age_cat);
 		$stmt->bindParam(3, $mov_id);
 	$stmt->execute();
+		
+	$tag = new Tags($db);
+
+	$mov_tags = [];
+	$mov_equipment = [];
+
+	if(isset($_POST['mov_tags'])){
+		$mov_tags = $_POST['mov_tags']; // Строка тегов
+	}
+	if(isset($_POST['mov_equipment'])){
+		$mov_equipment = $_POST['mov_equipment']; // Строка оборудования
+	}
+	$tags = array_merge($mov_tags, $mov_equipment); // Объединяем масивы
+	$tag->updateMovieTags($mov_id, $tags); // Обновляем теги
 	
-	$db->commit(); // Фиксация сохранение изменений
-	// $tag = new Tags($db);
-	// $equipment = new Tags($db);
-
-	$mov_tags = $_POST['mov_tags']; // Строка тегов
-	$mov_equipment = $_POST['mov_equipment']; // Строка оборудования
-	// $tag->updateMovieTags($mov_id, $mov_tags); // Обновляем теги
-	// $equipment->updateMovieTags($mov_id, $mov_equipment); // Обновляем оборудование
-
 	header("Location: /private.php?mov_id={$mov_id}"); exit();
 	
 

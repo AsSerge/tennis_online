@@ -64,9 +64,32 @@
 										<input class="dt-sc-button small" value="Зарегистрироваться*" type="submit"
 											id="register_form_submit">
 											<div class="dt-sc-hr-invisible-small"></div>
-											<p class="first">*Регистрируясь на сайте Вы принимаете <a href ="#" target="_blank">Правила участия</a> в конкурсах, проводимых Федерацией Тенниса России (ФТР) или уполномоченными организациями.</p>		
+											<p class="first">*Регистрируясь на сайте Вы принимаете <a href ="#" target="_blank">Правила участия</a> в конкурсах, проводимых Федерацией Тенниса России (ФТР) или уполномоченными организациями.</p>
+
+											<style>
+											.one_smm {
+												margin: 4px;
+											}
+
+											.one_smm:HOVER {
+												opacity: 0.7;
+											}
+										</style>
+										<p>Вход через социальные сети:</p>
+										<?php
+										$smm_link['VKontakte'] = ['vk', 'vk_entry.svg'];
+										$smm_link['Ok'] = ['ok', 'ok_entry.svg'];
+										$smm_link['Facebook'] = ['facebook', 'fb_entry.svg'];
+										$smm_link['Google'] = ['google', 'gl_entry.svg'];
+										$smm_link['Yandex'] = ['ya', 'ya_entry.svg'];
+										$smm_link['Mail.ru'] = ['mailru', 'ml_entry.svg'];
+										// $smm_link['Instagramm'] = ['inst', 'is_entry.svg'];
+										foreach($smm_link as $key => $adr){
+											echo "<a href='https://mytennis.online/entry.php?via={$adr[0]}' class='one_smm'><img src='/images/logo/{$adr[1]}' alt='{$key}' title='{$key}' width='30px'></a>";
+										}
+										?>
 									</form>
-									
+								
 								</div>
 							</div>
 						</div>

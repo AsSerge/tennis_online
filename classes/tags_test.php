@@ -9,6 +9,19 @@ echo '<pre>';
 //Создание экземпляра класса
 $tag = new Tags($db);
 
+echo '=================================================================='.N;
+echo '$tag->getMovieTags(1,3);'.NN;
+print_r($tag->getMovieTags(1,3));
+
+
+echo NN.'=================================================================='.N;
+echo '$tag->getMovieAllTags(1,2);'.NN;
+print_r($tag->getMovieAllTags(1,2));
+
+
+exit;
+
+
 //Возвращает список тегов определенной группы или все теги, если $group_id = 0, теги отсортированы по полю tag в порядке А..Я
 $tag->getTags();
 
@@ -151,7 +164,7 @@ print_r($tag->searchMovies([
 	'tags'=>array(1,2,3),
 	'type'=>'OR',
 	'term'=>'Lorem ipsum',
-	'order_by' => 'mov_id',
+	'order' => ['mov_name'=>'ASC'],
 	'output'=>1
 ]));
 
@@ -162,7 +175,7 @@ print_r($tag->searchMovies([
 	'tags'=>array(1,2,3),
 	'type'=>'OR',
 	'term'=>'ipsum movie',
-	'order_by' => 'mov_name',
+	'order' => ['mov_name'=>'ASC'],
 	'term_type' => 'OR',
 	'output'=>1
 ]));

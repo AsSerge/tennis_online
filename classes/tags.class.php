@@ -222,6 +222,49 @@ class Tags{
 	}#end function
 
 
+	/*
+	 * Возвращает список всех тегов, дополнительно возвращая признак отмеченных тегов для видеоролика
+	 * $mov_id - ID видеоролика
+	 * $output - формат вывода результатов: 
+	 * 			0 - массив вида array(array('tag_id'=>TAG_ID,'tag'=>"TAG",'group_id'=>GROUP_ID,'selected'=>SELECTED_TAG),...,array('tag_id'=>TAG_ID,'tag'=>"TAG",'group_id'=>GROUP_ID,'selected'=>SELECTED_TAG))
+	 * 			1 - массив вида array(array(TAG_ID,"TAG",GROUP_ID,SELECTED_TAG),...,array(TAG_ID,"TAG",GROUP_ID,SELECTED_TAG))
+	 * 			2 - массив, сгруппированный по group_id
+	 * 				array(
+	 * 					GROUP_ID => array(array('tag_id'=>TAG_ID,'tag'=>"TAG",'group_id'=>GROUP_ID,'selected'=>SELECTED_TAG),...,array('tag_id'=>TAG_ID,'tag'=>"TAG",'group_id'=>GROUP_ID,'selected'=>SELECTED_TAG)),
+	 * 					GROUP_ID => array(array('tag_id'=>TAG_ID,'tag'=>"TAG",'group_id'=>GROUP_ID,'selected'=>SELECTED_TAG),...,array('tag_id'=>TAG_ID,'tag'=>"TAG",'group_id'=>GROUP_ID,'selected'=>SELECTED_TAG))
+	 * 				)
+	 */
+	public function getMovieAllTags($mov_id=0,$output=0){
+		$mov_id = intval($mov_id);
+		$result = [];
+		$stmt = $this->db->query('SELECT T.`tag_id`,T.`tag`,T.`group_id`, IF(EXISTS(SELECT * FROM `movie_tags` WHERE `tag_id`=T.`tag_id` AND `mov_id`='.$mov_id.' LIMIT 1), 1, 0) as `selected` FROM `tags` as T ORDER BY T.`tag` ASC');
+		switch($output){
+			//массив вида array(array(TAG_ID,"TAG",GROUP_ID,SELECTED_TAG),...,array(TAG_ID,"TAG",GROUP_ID,SELECTED_TAG))
+			case 1:
+				while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+					$result[] = array($row[0],$row[1],$row[2],$row[3]);
+				}
+			break;
+
+			//массив, сгруппированный по group_id
+			case 2:
+				while ($row = $stmt->fetch(PDO::FETCH_NUM)){
+					if(!isset($result[$row[2]])) $result[$row[2]] = array();
+					$result[$row[2]][] = array('tag_id'=>$row[0],'tag'=>$row[1],'group_id'=>$row[2],'selected'=>$row[3]);
+				}
+			break;
+
+			//массив вида array(array(),...,array())
+			default:
+				while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+					$result[] = array('tag_id'=>$row[0],'tag'=>$row[1],'group_id'=>$row[2],'selected'=>$row[3]);
+				}
+		}
+		return $result;
+	}#end function
+
+
+
 
 	/*
 	 * Добавляет новый тег (один или несколько) в видеоролик
@@ -312,12 +355,12 @@ class Tags{
 	 * 		1 - массив вида array(array(MOVIE_ROW),array(MOVIE_ROW),...,array(MOVIE_ROW))
 	 * 		по-умолчанию: 1
 	 * 
-	 * 	$fields - массив полей таблицы movies, которые требуется вернуть, пример: array('mov_id','user_id','mov_name','mov_link')
+	 * $fields - массив полей таблицы movies, которые требуется вернуть, пример: array('mov_id','user_id','mov_name','mov_link')
 	 * 			если не задано, возвращает все поля
 	 * 			не работает, если $output задан как 0
 	 * 			по-умолчанию: * (возвращает все поля)
 	 * 
-	 * 	$match_id - ID конкурса, в котором участвуют видеоролики, среди которых ведется поиск
+	 * $match_id - ID конкурса, в котором участвуют видеоролики, среди которых ведется поиск
 	 * 			если не задано, поиск ведется среди всех видеороликов
 	 * 			по-умолчанию: не задано
 	 * 
@@ -336,7 +379,11 @@ class Tags{
 	 * 			OR - в `mov_name` должно быть хотя бы одно из слов в $term
 	 * 			по-умолчанию: AND
 	 * 
-	 * $status - видеоролиики начиная от какого статуса следует требуется вернуть.
+	 * $date_begin - Если задано, выводит добавленные видеоролики начиная с указанной даты включительно. Дата в формате MySQL YYYY-MM-DD
+	 * $date_end - Если задано, выводит добавленные видеоролики до указанной даты включительно. Дата в формате MySQL YYYY-MM-DD
+	 * 
+	 * 
+	 * $status - видеоролиики начиная от какого статуса следует вернуть.
 	 * 			Возможные значения:
 	 * 			0 - Все видеоролики (заблокированные, ожидающие аппрува, активные)
 	 * 			1 - Только ожидающие аппрува и/или активные
@@ -351,15 +398,24 @@ class Tags{
 	 * 
 	 * Возвращает FALSE в случае ошибки или результат в случае успеха
 	 * 
-	 * searchMovies([
-	 * 		'tags' => array(1,2,3),
-	 * 		'type' => 1,
-	 * 		'movies' => null,
-	 * 		'output' => 2,
-	 * 		'order_by' => 'mov_id',
-	 * 		'order_type' => 'DESC'
-	 * ]);
+	 * 	ФУНКЦИЯ searchMovies() С ПОЛНЫМ НАБОРОМ ПАРАМЕТРОВ:
 	 * 
+		searchMovies([
+			'tags' 		=> [1,2,3],											//ID тегов
+			'type' 		=> 'OR',											//тип фильтрации тегов AND OR
+			'movies'	=> null,											//массив ID видеороликов, среди которых ведется поиск
+			'output'	=> 1,												//формат вывода результатов
+			'fields'	=> ['mov_id','user_id','mov_name','mov_link'],		//массив полей таблицы movies, которые требуется вернуть
+			'match_id'	=> 0,												//ID конкурса, в котором участвуют видеоролики, среди которых ведется поиск
+			'order'		=> ['mov_name'=> 'ASC','mov_added'=> 'DESC'],		//Поля и поряток сортировки результатов
+			'term'		=> '',												//если задано, то будет осуществлен поиск по полю `mov_name`
+			'term_type' => 'AND',											//AND - в `mov_name` должны быть все слова из $term, OR - в `mov_name` должно быть хотя бы одно из слов в $term
+			'date_begin'=> '2020-01-01',									//Если задано, выводит добавленные видеоролики начиная с указанной даты включительно. Дата в формате MySQL YYYY-MM-DD
+			'date_end'	=> '2059-12-31',									//Если задано, выводит добавленные видеоролики до указанной даты включительно. Дата в формате MySQL YYYY-MM-DD
+			'status'	=> 2,												//видеоролиики начиная от какого статуса следует вернуть: 2 - активные, 1 - активные + аппрув, 0 - все
+			'limit'		=> 0,												//Максимальное количество возвращаемых видеоролииков
+			'offset'	=> 0												//мещение в результатах поиска на указанное количество записей
+		]);
 	 */
 	public function searchMovies($data=array()){
 
@@ -375,6 +431,15 @@ class Tags{
 		if(!empty($data['match_id'])){
 			$awhere[]='M.`match_id`='.intval($data['match_id']);
 		}
+
+		if(!empty($data['date_begin'])&&preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $data['date_begin'])){
+			$awhere[]='M.`mov_added`>="'.$data['date_begin'].'"';
+		}
+
+		if(!empty($data['date_end'])&&preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $data['date_end'])){
+			$awhere[]='M.`mov_added`<="'.$data['date_end'].'"';
+		}
+
 
 		if(!empty($data['term'])){
 			$term_type = !empty($data['term_type']) && $data['term_type'] == 'OR' ? 'OR' : 'AND';
@@ -406,6 +471,7 @@ class Tags{
 		$tags = false;
 		if(!empty($data['tags'])){
 			$tags = is_array($data['tags']) ? array_map('intval',$data['tags']) : array(intval($data['tags']));
+			if(count($tags)==1&&$tags[0]==0) $tags = false;
 		}
 
 		if(is_array($tags)){
@@ -435,8 +501,8 @@ class Tags{
 			$order = ' ORDER BY '.implode(',', $flds);
 		}
 
-		$limit = isset($data['limit'])? abs(intval($data['limit'])) : 0;
-		$offset = isset($data['offset'])? abs(intval($data['offset'])) : 0;
+		$limit = !empty($data['limit'])? abs(intval($data['limit'])) : 0;
+		$offset = !empty($limit)&&!empty($data['offset'])? abs(intval($data['offset'])) : 0;
 
 		$result = [];
 

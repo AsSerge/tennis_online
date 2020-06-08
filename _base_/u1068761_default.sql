@@ -2,10 +2,17 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Хост: 127.0.0.1:3306
 -- Время создания: Июн 08 2020 г., 07:09
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
+=======
+-- Хост: localhost
+-- Время создания: Июн 08 2020 г., 08:34
+-- Версия сервера: 5.7.23-24
+-- Версия PHP: 7.1.32
+>>>>>>> ba454e082a43d9725c7efe579e9957b8cbc95953
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,13 +60,19 @@ INSERT INTO `matches` (`match_id`, `name`, `begin_date`, `end_date`) VALUES
 CREATE TABLE `movie` (
   `mov_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+<<<<<<< HEAD
   `match_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID конкурса, в котором участвует видеоролик',
   `mov_status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - блокировка, 1 - ждет подтверждения, 2 - опубликован ',
+=======
+  `match_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'ID конкурса, в котором участвует видеоролик',
+  `mov_status` int(11) NOT NULL DEFAULT '1' COMMENT '0 - блокировка, 1 - ждет подтверждения, 2 - опубликован ',
+>>>>>>> ba454e082a43d9725c7efe579e9957b8cbc95953
   `mov_name` varchar(512) NOT NULL,
   `mov_description` text NOT NULL,
   `mov_link` varchar(1024) NOT NULL,
   `mov_link_type` varchar(128) NOT NULL,
   `mov_added` date NOT NULL,
+<<<<<<< HEAD
   `mov_last_update` timestamp NOT NULL DEFAULT current_timestamp(),
   `mov_age_cat` varchar(128) NOT NULL,
   `voteuser_count` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Общее количество проголосовавших за ролик пользователей',
@@ -71,6 +84,19 @@ CREATE TABLE `movie` (
   `reff_hardness` double UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Среднее значение оценки по критерию: Сложность',
   `reff_usefulness` double UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Среднее значение оценки по критерию: Полезность',
   `reff_points` double UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Сумма баллов итоговых оценок видеоролика всеми членами жюри'
+=======
+  `mov_last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `mov_age_cat` varchar(128) NOT NULL,
+  `voteuser_count` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Общее количество проголосовавших за ролик пользователей',
+  `voteuser_points` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Общее количество баллов, выставленных проголосовавшими пользователями этому ролику ',
+  `voteuser_avg` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Среднее значение результатов голосования по текущему видео',
+  `reff_unique` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Среднее значение оценки по критерию: Уникальность',
+  `reff_humor` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Среднее значение оценки по критерию: Юмор',
+  `reff_competition` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Среднее значение оценки по критерию: Состязательность',
+  `reff_hardness` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Среднее значение оценки по критерию: Сложность',
+  `reff_usefulness` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Среднее значение оценки по критерию: Полезность',
+  `reff_points` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Сумма баллов итоговых оценок видеоролика всеми членами жюри'
+>>>>>>> ba454e082a43d9725c7efe579e9957b8cbc95953
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -78,7 +104,11 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`mov_id`, `user_id`, `match_id`, `mov_status`, `mov_name`, `mov_description`, `mov_link`, `mov_link_type`, `mov_added`, `mov_last_update`, `mov_age_cat`, `voteuser_count`, `voteuser_points`, `voteuser_avg`, `reff_unique`, `reff_humor`, `reff_competition`, `reff_hardness`, `reff_usefulness`, `reff_points`) VALUES
+<<<<<<< HEAD
 (1, 70, 3, 1, 'Australian Open 2018', 'Australian Open 2018 / 3-й Круг / Анжелик Кербер (Германия) – Мария Шарапова (Россия)', 'https://youtu.be/CdW9D7hhj0Y', 'youtube', '2020-06-06', '2020-06-06 18:27:58', 'Любой', 3, 8, 2.6667, 3.6667, 5.6667, 5, 7, 5.6667, 162),
+=======
+(1, 70, 3, 1, 'Australian Open 2018', 'Australian Open 2018 / 3-й Круг / Анжелик Кербер (Германия) – Мария Шарапова (Россия)', 'https://youtu.be/CdW9D7hhj0Y', 'youtube', '2020-06-06', '2020-06-06 18:27:58', 'взрослые', 3, 8, 2.6667, 3.6667, 5.6667, 5, 7, 5.6667, 162),
+>>>>>>> ba454e082a43d9725c7efe579e9957b8cbc95953
 (2, 70, 3, 2, 'Современный удар справа', 'Современный удар справа. Modern tennis forehand.\r\nУдар справа — один из основных ударов в теннисе, и что самое интересное — с него начинается все обучение.', 'https://youtu.be/K_7wBxg4aPs', 'youtube', '2020-06-06', '2020-06-06 18:29:28', 'до 15 лет', 2, 5, 2.5, 0, 0, 0, 0, 0, 0),
 (4, 70, 3, 1, 'Eurosport | Home of Tennis', 'DixonBaxi partner with Eurosport to create the ‘Home of Tennis’ with a kinetic identity capturing the sensation of playing across multiple surfaces.', 'https://vimeo.com/325650740', 'vimeo', '2020-06-06', '2020-06-06 18:51:28', 'Любой', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (5, 70, 1, 1, 'Подача один из самых важных элементов игры', 'Подача один из самых важных элементов игры в теннисе, Начинать разучивать базовую технику Крученой  подачи целесообразно держа ракетку', 'https://ok.ru/video/2612135213', 'ok', '2020-06-06', '2020-06-06 18:54:04', 'Любой', 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -97,7 +127,7 @@ INSERT INTO `movie` (`mov_id`, `user_id`, `match_id`, `mov_status`, `mov_name`, 
 CREATE TABLE `movie_comments` (
   `com_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `com_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `com_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `com_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -119,30 +149,40 @@ CREATE TABLE `movie_tags` (
 INSERT INTO `movie_tags` (`mov_id`, `tag_id`) VALUES
 (0, 3),
 (1, 1),
-(1, 3),
-(1, 6),
-(1, 7),
-(1, 16),
-(1, 17),
-(1, 20),
-(1, 23),
 (2, 1),
-(2, 6),
-(2, 7),
-(2, 11),
-(2, 14),
-(2, 17),
-(2, 20),
-(2, 23),
 (4, 1),
+(8, 1),
+(0, 3),
+(1, 3),
 (4, 3),
+(7, 3),
+(9, 3),
+(10, 3),
+(1, 6),
+(2, 6),
 (4, 6),
-(4, 14),
-(4, 16),
-(4, 17),
-(4, 20),
 (5, 6),
+(6, 6),
+(7, 6),
+(10, 6),
+(1, 7),
+(2, 7),
+(9, 7),
+(10, 7),
+(2, 11),
+(10, 11),
+(2, 14),
+(4, 14),
+(1, 16),
+(4, 16),
+(1, 17),
+(2, 17),
+(4, 17),
+(1, 20),
+(2, 20),
+(4, 20),
 (5, 20),
+<<<<<<< HEAD
 (6, 6),
 (7, 3),
 (7, 6),
@@ -155,6 +195,12 @@ INSERT INTO `movie_tags` (`mov_id`, `tag_id`) VALUES
 (10, 7),
 (10, 11),
 (10, 21),
+=======
+(7, 20),
+(10, 21),
+(1, 23),
+(2, 23),
+>>>>>>> ba454e082a43d9725c7efe579e9957b8cbc95953
 (10, 23);
 
 -- --------------------------------------------------------
@@ -164,21 +210,30 @@ INSERT INTO `movie_tags` (`mov_id`, `tag_id`) VALUES
 --
 
 CREATE TABLE `rates_jury` (
-  `id` int(10) UNSIGNED NOT NULL COMMENT 'UID записи',
-  `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
-  `movie_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
-  `movie_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID пользователя - создателя ролика',
   `reff_id` int(10) UNSIGNED NOT NULL COMMENT 'ID голосующего члена жюри',
-  `rate_unique` int(10) UNSIGNED NOT NULL COMMENT 'Уникальность (Критерий голосования)',
-  `rate_humor` int(10) UNSIGNED NOT NULL COMMENT 'Юмор (Критерий голосования)',
-  `rate_competition` int(10) UNSIGNED NOT NULL COMMENT 'Состязательность (Критерий голосования)',
-  `rate_hardness` int(10) UNSIGNED NOT NULL COMMENT 'Сложность (Критерий голосования)',
-  `rate_usefulness` int(10) UNSIGNED NOT NULL COMMENT 'Полезность (Критерий голосования)',
-  `myprize_status` int(10) UNSIGNED NOT NULL COMMENT 'Признак Голосования <Мой приз>: 0 - ничего; 1 - отмечен как номинант; 2 - выбран как победитель',
-  `myprize_data` char(32) NOT NULL COMMENT 'Дополнительные данные, по которым можно идентифицировать приз члена жюри (числовой или текстовый идентификатор)',
+  `mov_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
+  `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
+  `movie_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID пользователя - создателя ролика',
+  `rate_unique` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Уникальность (Критерий голосования)',
+  `rate_humor` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Юмор (Критерий голосования)',
+  `rate_competition` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Состязательность (Критерий голосования)',
+  `rate_hardness` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Сложность (Критерий голосования)',
+  `rate_usefulness` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Полезность (Критерий голосования)',
+  `points` double UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Общая оценка ролика по всем критериям (вычисляется автоматически)',
+  `myprize_status` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Признак Голосования <Мой приз>: 0 - ничего; 1 - отмечен как номинант; 2 - выбран как победитель',
+  `myprize_data` char(32) NOT NULL DEFAULT '' COMMENT 'Дополнительные данные, по которым можно идентифицировать приз члена жюри (числовой или текстовый идентификатор)',
   `rate_ip` char(15) NOT NULL COMMENT 'IP адрес с которого было голосование',
   `rate_ts` datetime NOT NULL COMMENT 'Дата и время голосования'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица голосований членов жюри';
+
+--
+-- Дамп данных таблицы `rates_jury`
+--
+
+INSERT INTO `rates_jury` (`reff_id`, `mov_id`, `match_id`, `movie_user_id`, `rate_unique`, `rate_humor`, `rate_competition`, `rate_hardness`, `rate_usefulness`, `points`, `myprize_status`, `myprize_data`, `rate_ip`, `rate_ts`) VALUES
+(1, 1, 3, 70, 3, 4, 6, 7, 6, 52, 0, '', '213.138.93.150', '2020-06-07 14:55:12'),
+(2, 1, 3, 70, 5, 6, 4, 7, 6, 56, 0, '', '213.138.93.150', '2020-06-07 14:55:47'),
+(3, 1, 3, 70, 3, 7, 5, 7, 5, 54, 0, '', '213.138.93.150', '2020-06-07 21:01:06');
 
 -- --------------------------------------------------------
 
@@ -187,15 +242,25 @@ CREATE TABLE `rates_jury` (
 --
 
 CREATE TABLE `rates_users` (
-  `id` int(10) UNSIGNED NOT NULL COMMENT 'UID записи',
+  `user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID голосующего пользователя',
+  `mov_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
   `match_id` int(10) UNSIGNED NOT NULL COMMENT 'ID конкурса',
-  `movie_id` int(10) UNSIGNED NOT NULL COMMENT 'ID видеоролика',
   `movie_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID пользователя - создателя ролика',
-  `rate_user_id` int(10) UNSIGNED NOT NULL COMMENT 'ID голосующего пользователя',
-  `rate_value` int(10) UNSIGNED NOT NULL COMMENT 'Выставленная голосующим пользователем оценка',
+  `points` int(10) UNSIGNED NOT NULL COMMENT 'Выставленная голосующим пользователем оценка',
   `rate_ip` char(15) NOT NULL COMMENT 'IP адрес с которого было голосование',
   `rate_ts` datetime NOT NULL COMMENT 'Дата и время голосования'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица голосований пользователей';
+
+--
+-- Дамп данных таблицы `rates_users`
+--
+
+INSERT INTO `rates_users` (`user_id`, `mov_id`, `match_id`, `movie_user_id`, `points`, `rate_ip`, `rate_ts`) VALUES
+(1, 1, 3, 70, 3, '213.138.93.150', '2020-06-07 13:11:12'),
+(61, 1, 3, 70, 3, '213.138.93.150', '2020-06-07 21:01:06'),
+(61, 2, 3, 70, 4, '213.138.93.150', '2020-06-07 13:04:09'),
+(70, 1, 3, 70, 2, '213.138.93.150', '2020-06-07 13:11:12'),
+(70, 2, 3, 70, 1, '213.138.93.150', '2020-06-07 13:11:12');
 
 -- --------------------------------------------------------
 
@@ -320,7 +385,7 @@ CREATE TABLE `users` (
   `user_city` varchar(32) NOT NULL DEFAULT '',
   `user_mail` varchar(32) NOT NULL DEFAULT '',
   `user_phone` varchar(32) NOT NULL DEFAULT '',
-  `user_status` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT 'Текущий статус учетной записи: 0 - заблокирован, 1 - активен',
+  `user_status` int(10) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'Текущий статус учетной записи: 0 - заблокирован, 1 - активен',
   `id_vk` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в VKontakte',
   `id_ok` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Одноклассниках',
   `id_facebook` char(16) NOT NULL DEFAULT '' COMMENT 'ID пользователя в Facebook',
@@ -342,7 +407,8 @@ INSERT INTO `users` (`user_id`, `user_login`, `user_password`, `mail_confirm`, `
 (66, 'thrascheev@googlemail.com', '', '', '4ad4cb819cfb5ee2e95e7affefb072e6', 'Thrashcheev', 'Aleksey', '', 'thrascheev@googlemail.com', '', 1, '', '', '', '1152845224243875', '', '', ''),
 (67, 'pleishner99@mail.ru', '', '', '7ff37197d2f5cbf160856686c546b3e0', 'Цветков', 'Сергей', '', 'pleishner99@mail.ru', '', 1, '136507481', '', '', '', '', '', ''),
 (68, 'qtxsjzkyos_1555298875@tfbnw.net', '', '', 'b5ae11821c34d568a1cf7d1ee02a86d8', 'Verna', 'Verna', '', 'qtxsjzkyos_1555298875@tfbnw.net', '', 1, '', '', '1015008388744485', '', '', '', ''),
-(70, 'z00m.serge@gmail.com', 'f25c28fa4d121e1ac3a1286c59822424', '74695e4a6b7bb7ca8c083cbdfa69dc54', '97bfe3558b1947880ce403040aec694e', '', '', '', 'z00m.serge@gmail.com', '', 1, '', '', '', '', '', '', '');
+(70, 'z00m.serge@gmail.com', 'f25c28fa4d121e1ac3a1286c59822424', '74695e4a6b7bb7ca8c083cbdfa69dc54', 'dc000d3ee1f775ce23123c835e6fba3f', '', '', '', 'z00m.serge@gmail.com', '', 1, '', '', '', '', '', '', ''),
+(71, 'mytennisonline@mail.ru', '', '', 'a546ad2b0d511d5659f4894f05e6abeb', 'Marin', 'Serg', '', 'mytennisonline@mail.ru', '', 1, '', '', '', '', '1321621849308733', '', '');
 
 --
 -- Индексы сохранённых таблиц
@@ -382,9 +448,9 @@ ALTER TABLE `movie_tags`
 -- Индексы таблицы `rates_jury`
 --
 ALTER TABLE `rates_jury`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`reff_id`,`mov_id`) USING BTREE,
   ADD KEY `match_id` (`match_id`),
-  ADD KEY `movie_id` (`movie_id`),
+  ADD KEY `movie_id` (`mov_id`),
   ADD KEY `movie_user_id` (`movie_user_id`),
   ADD KEY `reff_id` (`reff_id`) USING BTREE,
   ADD KEY `myprize` (`myprize_status`);
@@ -393,11 +459,11 @@ ALTER TABLE `rates_jury`
 -- Индексы таблицы `rates_users`
 --
 ALTER TABLE `rates_users`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`user_id`,`mov_id`),
   ADD KEY `match_id` (`match_id`),
-  ADD KEY `movie_id` (`movie_id`),
-  ADD KEY `rate_user_id` (`rate_user_id`),
-  ADD KEY `movie_user_id` (`movie_user_id`);
+  ADD KEY `movie_user_id` (`movie_user_id`),
+  ADD KEY `mov_id` (`mov_id`) USING BTREE,
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Индексы таблицы `refferies`
@@ -449,18 +515,6 @@ ALTER TABLE `movie_comments`
   MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `rates_jury`
---
-ALTER TABLE `rates_jury`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'UID записи';
-
---
--- AUTO_INCREMENT для таблицы `rates_users`
---
-ALTER TABLE `rates_users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'UID записи';
-
---
 -- AUTO_INCREMENT для таблицы `refferies`
 --
 ALTER TABLE `refferies`
@@ -476,7 +530,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

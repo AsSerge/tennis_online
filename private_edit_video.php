@@ -14,6 +14,11 @@ $all_data = $db->prepare($sql);
 $all_data->execute([$mov_id]);
 $move = $all_data->fetch(PDO::FETCH_ASSOC);
 
+// ПРоверяем - может ли пльзователь редактировать это видео и если нет - отправляем его на его страницу
+if($user_id != $move['user_id']){
+	header("Location: ./private.php"); exit();
+}	
+
 // Получаем все теги ролика (Теги и оборудование)
 $tag = new Tags($db);
 $all_tags = $tag->getMovieTags($mov_id, 3);
@@ -122,10 +127,11 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 									<div class="move_check">
 										<?php
 										$tags = new Tags($db);
-										foreach (($tags->getTags(1,3))[1] as $key => $value){
+										$ta = $tags->getMovieAllTags($mov_id,2);
+										foreach($ta[1] as $row){
 											echo "<span>";
-											echo "<input type='checkbox' id='tags{$key}' name='mov_tags[]' value='{$key}'>";
-											echo "<label for='tags'>{$value}</label>";
+											echo "<input type='checkbox' id='tags".$row['tag_id']."' name='mov_tags[]' value='".$row['tag_id']."' ".($row['selected']?"checked='checked'":"").">";
+											echo "<label for='tags' ".($row['selected']? "style='background-color: rgb(23, 158, 214);'":"").">".$row['tag']."</label>";
 											echo "</span>";
 										}
 										?>
@@ -137,11 +143,10 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 									</div>
 									<div class="move_check">
 										<?php
-										$equipment = new Tags($db);
-										foreach (($equipment->getTags(2,3))[2] as $key => $value){
+										foreach($ta[2] as $row){
 											echo "<span>";
-											echo "<input type='checkbox' id='tags{$key}' name='mov_equipment[]' value='{$key}'>";
-											echo "<label for='tags'>{$value}</label>";
+											echo "<input type='checkbox' id='tags".$row['tag_id']."' name='mov_tags[]' value='".$row['tag_id']."' ".($row['selected']?"checked='checked'":"").">";
+											echo "<label for='tags' ".($row['selected']? "style='background-color: rgb(23, 158, 214);'":"").">".$row['tag']."</label>";
 											echo "</span>";
 										}
 										?>
