@@ -85,7 +85,7 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 									echo "<div class='dt-sc-hr-invisible-small'></div>";
 									echo "<div class='dt-excersise-detail mov_legend'>";
 										echo "<p><span>Категория: </span>{$move['name']}</p>";
-										echo "<p><span>Возрастная категория: </span>{$move['mov_age_cat']}</p>";
+										echo "<p><span>Возрастная категория: </span>{$move['mov_age_cat']}</p>";										
 										if(count($all_tags[1] > 0)){
 											echo "<p><span>Теги: </span>";
 												$one_tag = "";
