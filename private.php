@@ -86,7 +86,7 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 									echo "<div class='dt-excersise-detail mov_legend'>";
 										echo "<p><span>Категория: </span>{$move['name']}</p>";
 										echo "<p><span>Возрастная категория: </span>{$move['mov_age_cat']}</p>";
-										if(count($all_tags[1] > 0)){
+										if(isset($all_tags[1])){
 											echo "<p><span>Теги: </span>";
 												$one_tag = "";
 												foreach($all_tags[1] as $tag){
@@ -94,7 +94,7 @@ $all_tags = $tag->getMovieTags($mov_id, 3);
 												}
 												echo rtrim($one_tag, ", "); 
 											echo "</p>";
-										}if(count($all_tags[2]) > 0){
+										}if(isset($all_tags[2])){
 											echo "<p><span>Принадлежности: </span>";
 												$one_tag = "";
 											foreach($all_tags[2] as $tag){
